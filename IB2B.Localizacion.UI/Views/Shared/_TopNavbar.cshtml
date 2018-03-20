@@ -1,0 +1,447 @@
+﻿<!-- Logo -->
+<a href="#" class="logo">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="glyphicon glyphicon-th"></span>
+</a>
+<!-- Header Navbar: style can be found in header.less -->
+<nav class="navbar navbar-static-top navbar-fixed-top" role="navigation">   
+    <ul class="nav navbar-nav" style="font-family:'Times New Roman', Times, serif;font-size:17px">
+        <li class="active"><a href="#"><strong>Dynamics 365</strong></a></li>
+        <li><a href="#"><strong>Finance and Operations</strong></a></li>
+    </ul>
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            <!-- Messages: style can be found in dropdown.less-->
+            <li class="dropdown messages-menu">
+                <!-- Menu toggle button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="label label-success">4</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="header">You have 4 messages</li>
+                    <li>
+                        <!-- inner menu: contains the messages -->
+                        <ul class="menu">
+                            <li>
+                                <!-- start message -->
+                                <a href="#">
+                                    <div class="pull-left">
+                                        <!-- User Image -->
+                                        <img src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    </div>
+                                    <!-- Message title and timestamp -->
+                                    <h4>
+                                        Support Team
+                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                    </h4>
+                                    <!-- The message -->
+                                    <p>Why not buy a new awesome theme?</p>
+                                </a>
+                            </li>
+                            <!-- end message -->
+                        </ul>
+                        <!-- /.menu -->
+                    </li>
+                    <li class="footer"><a href="#">See All Messages</a></li>
+                </ul>
+            </li>
+            <!-- /.messages-menu -->
+
+            <!-- Notifications Menu -->
+            <li class="dropdown notifications-menu">
+                <!-- Menu toggle button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="label label-warning">10</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="header">You have 10 notifications</li>
+                    <li>
+                        <!-- Inner Menu: contains the notifications -->
+                        <ul class="menu">
+                            <li>
+                                <!-- start notification -->
+                                <a href="#">
+                                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                </a>
+                            </li>
+                            <!-- end notification -->
+                        </ul>
+                    </li>
+                    <li class="footer"><a href="#">View all</a></li>
+                </ul>
+            </li>
+
+
+
+            <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <!-- The user image in the navbar-->
+                    <img src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                    @*<span class="hidden-xs">Alexander Pierce</span>*@
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <span title="Dennis Saylor" class="navigationBar-userFlyoutUserName" data-dyn-bind="text: $data.UserName, title: $data.UserName">Dennis Saylor</span>
+                    </li>
+                   <li>
+                       <span title="Dennis Saylor" class="navigationBar-userFlyoutUserName" data-dyn-bind="text: $data.UserName, title: $data.UserName">Dennis Saylor</span>
+                   </li>
+                    <br />
+                    <li>
+                        <span class="button-label" id="SignOut_label"  for="SignOut">Sign out</span>
+                    </li>                       
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="primaryConductor" role="main" id="PrimaryConductor">
+    <div data-dyn-controlname="ActionPaneHeader" data-dyn-role="AppBarSection" data-dyn-container="true" class="appBar layout-reflow-scope fill-width appBar-isPinned">
+        <div class="appBar-toolbar" role="toolbar">        
+            <div data-dyn-controlname="SystemDefinedPage" data-dyn-role="ActionGroup" class="actionGroup appBar-button-group" data-dyn-container="true" data-dyn-lastvisible="true">
+                <button data-dyn-controlname="SystemDefinedSaveButton" id="btnGuardarRegistro" onclick="GuardarRegistro()" data-dyn-role="CommandButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="TextWithImageAbove">
+                    <div class="button-container">
+                        <span class="button-label glyphicon glyphicon-floppy-disk"> Guardar</span>
+                    </div>
+                </button>
+                <button data-dyn-controlname="SystemDefinedViewEditButton" id="btnEditarRegistro" name="btnEditarRegistro" onclick="EditarItem()" data-dyn-role="CommandButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="TextWithImageAbove">
+                    <div class="button-container">
+                        <span class="button-label glyphicon-pencil"> Editar</span>
+                    </div>
+                </button>
+                <div class="actionGroup-overflow" data-dyn-bind="visible: $data.Visible" data-dyn-lastvisible="true"></div>
+            </div>
+            <div data-dyn-controlname="NewDeleteButtonGroup" data-dyn-role="ActionGroup" class="actionGroup appBar-button-group" data-dyn-container="true" data-dyn-template-applied="true" data-dyn-lastvisible="true">
+                <button data-dyn-controlname="NewCustomer" id="btnNuevoRegistro" name="btnNuevoRegistro" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="TextWithImageAbove">
+                    <div class="button-container">
+                        <span class="button-label glyphicon glyphicon-plus"> Nuevo</span>
+                    </div>
+                </button>
+                <button data-dyn-controlname="DeleteButton" id="btnEliminarRegistro" name="btnEliminarRegistro" data-dyn-role="CommandButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="TextWithImageAbove">
+                    <div class="button-container">
+                        <span class="button-label glyphicon glyphicon-trash"> Eliminar</span>
+                    </div>
+                </button>
+                <div class="actionGroup-overflow" data-dyn-bind="visible: $data.Visible" data-dyn-lastvisible="true"></div>
+            </div>
+            <div data-dyn-controlname="aptabCustomer" data-dyn-role="AppBarTab" class="appBarTab" data-dyn-container=".appBarTab-content" data-dyn-focus=".appBarTab-header" data-dyn-template-applied="true" data-dyn-lastvisible="true" >
+                <button id="PanelCliente" class="appBarTab-header allowFlyoutClickPropagation" type="button" aria-expanded="true" onclick="ActivarPanel('PanelCliente','PanelBodyCliente')">
+                    <span class="appBarTab-headerLabel allowFlyoutClickPropagation"> Customer</span>
+                </button>
+            </div>
+            <div data-dyn-controlname="aptabSell" data-dyn-role="AppBarTab" class="appBarTab"data-dyn-container=".appBarTab-content" data-dyn-focus=".appBarTab-header" data-dyn-template-applied="true" data-dyn-lastvisible="true">
+                <button id="PanelInventario" class="appBarTab-header allowFlyoutClickPropagation" type="button" aria-expanded="false" onclick="ActivarPanel('PanelInventario', 'PanelBodyInventario')">
+                    <span class="appBarTab-headerLabel allowFlyoutClickPropagation"> Inventario</span>
+                </button>  
+            </div>
+        </div>
+        <div id="PanelBodyInventario" class="appBar-flyout layout-root-scope allowFlyoutClickPropagation" data-dyn-stop-binding="true" role="toolbar" style="display:none;">
+            <div class="appBarTab-content" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                <div data-dyn-controlname="btngrpCollectNew" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpCollectNew_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">New</label>
+                    </div><div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <button data-dyn-controlname="mibLedgerJournalTable_CustPaym" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Payment journal</span>
+                            </div>
+                        </button><button data-dyn-controlname="mibCustCollectionLetterCreate" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Collection letters</span>
+                            </div>
+                        </button>
+                    </div>
+                </div><div data-dyn-controlname="btngrpCollectionCollectionLetters" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpCollectionCollectionLetters_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">Collection letters</label>
+                    </div><div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <button data-dyn-controlname="mibCustCollectionLetterNote" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Review and process collection letters</span>
+                            </div>
+                        </button><button data-dyn-controlname="mibCustCollectionLetterJournal" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Collection letter journal</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div data-dyn-controlname="btngrpInterestNoteAdjustment" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpInterestNoteAdjustment_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">Interest note adjustment</label>
+                    </div>
+                    <div class="group_content layout-container layout-horizontal" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <div class="layout-column layout-container layout-vertical">
+                            <div data-dyn-controlname="MenuButtonInterestNote" data-dyn-role="MenuButton" class="Auto flyoutContainer" data-dyn-focus=".dynamicsButton" data-dyn-container=".flyoutButton-flyOut" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true">
+                                <button class="button flyoutButton-Button dynamicsButton" type="button" role="button" aria-live="assertive" aria-atomic="true" aria-relevant="all" aria-busy="false" aria-label="Menu button 'Interest note' is collapsed" tabindex="0" dyn-data-supertooltip="true" aria-expanded="false" data-dyn-button-display="Auto" aria-valuenow="-1">
+                                    <div class="button-container">
+                                        <span class="button-commandRing imageBinder-emptyImage"></span>
+                                        <span class="button-label button-label-dropDown">Interest note</span>
+                                    </div>
+                                </button><div class="sysPopup flyoutButton-flyOut layout-root-scope" data-dyn-content="append: '*'" role="menu" data-dyn-content-applied="true" data-dyn-lastvisible="false" style="display: none;"></div>
+                            </div><div data-dyn-controlname="MenuButtonInterestTransaction" data-dyn-role="MenuButton" class="Auto flyoutContainer" data-dyn-focus=".dynamicsButton" data-dyn-container=".flyoutButton-flyOut" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true">
+                                <button class="button flyoutButton-Button dynamicsButton" type="button" role="button" aria-live="assertive" aria-atomic="true" aria-relevant="all" aria-busy="false" aria-label="Menu button 'Transaction interest' is collapsed" tabindex="0" dyn-data-supertooltip="true" aria-expanded="false" data-dyn-button-display="Auto" aria-valuenow="-1">
+                                    <div class="button-container">
+                                        <span class="button-commandRing imageBinder-emptyImage"></span>
+                                        <span class="button-label button-label-dropDown">Transaction interest</span>
+                                    </div>
+                                </button><div class="sysPopup flyoutButton-flyOut layout-root-scope" data-dyn-content="append: '*'" role="menu" data-dyn-content-applied="true" data-dyn-lastvisible="false" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-dyn-controlname="btngrpCollectionInterest" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpCollectionInterest_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">Interest</label>
+                    </div><div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <button data-dyn-controlname="mibCustInterestCreate" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Calculate interest</span>
+                            </div>
+                        </button><button data-dyn-controlname="mibCustInterestNote" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Print /post interest notes</span>
+                            </div>
+                        </button><button data-dyn-controlname="mibCustInterestJournal" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Interest journal</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div data-dyn-controlname="btngrpCollectionStatements" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpCollectionStatements_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">Customer balances</label>
+                    </div><div class="group_content layout-container layout-horizontal" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <div class="layout-column layout-container layout-vertical">
+                            <button data-dyn-serverid="1775_0" data-dyn-rootserverid="72_0" data-dyn-controlname="mibCustAccountStatementExt" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                                <div class="button-container">
+                                    <span class="button-commandRing imageBinder-emptyImage"></span>
+                                    <span class="button-label">Statements</span>
+                                </div>
+                            </button><button data-dyn-controlname="mibCustWriteOff" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                                <div class="button-container">
+                                    <span class="button-commandRing imageBinder-emptyImage"></span>
+                                    <span class="button-label">Write off</span>
+                                </div>
+                            </button><button data-dyn-controlname="CustOverPaymReimbursement" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                                <div class="button-container">
+                                    <span class="button-commandRing imageBinder-emptyImage"></span>
+                                    <span class="button-label">Reimburse customer</span>
+                                </div>
+                            </button>
+                        </div><div class="layout-column layout-container layout-vertical">
+                            <button data-dyn-controlname="mibCustCollections" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                                <div class="button-container">
+                                    <span class="button-commandRing imageBinder-emptyImage"></span>
+                                    <span class="button-label">Collections</span>
+                                </div>
+                            </button><button data-dyn-controlname="CustCollectionsTransactionStatusHistory" data-dyn-role="DropDialogButton" class="Auto button dynamicsButton dropDialogButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="TextOnly" aria-expanded="false">
+                                <div class="button-container">
+                                    <span class="button-commandRing imageBinder-emptyImage"></span>
+                                    <span class="button-label button-label-dropDown">Collections history</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div><div data-dyn-controlname="btngrpInvoiceSettle" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpInvoiceSettle_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">Settle</label>
+                    </div><div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <button data-dyn-controlname="mibCustOpenTrans" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Settle transactions</span>
+                            </div>
+                        </button><button data-dyn-controlname="mibCustOpenTransReverse" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Undo settlement</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button role="button" type="button">
+                <div class="appBar-pin">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+            </button>           
+        </div>
+        <div id="PanelBodyCliente" class="appBar-flyout layout-root-scope allowFlyoutClickPropagation" data-dyn-stop-binding="true" role="toolbar" >
+            <div class="appBarTab-content" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                <div data-dyn-controlname="btngrpCustomerAccounts" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpCustomerAccounts_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">Accounts</label>
+                    </div>
+                    <div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <div data-dyn-controlname="GeneralContacts" data-dyn-role="MenuButton" class="Auto flyoutContainer" data-dyn-focus=".dynamicsButton" data-dyn-container=".flyoutButton-flyOut" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true">
+                            <button class="button flyoutButton-Button dynamicsButton" type="button" role="button" aria-live="assertive" aria-atomic="true" aria-relevant="all" aria-busy="false" aria-label="Menu button 'Contacts' is collapsed" tabindex="0" dyn-data-supertooltip="true" aria-expanded="false" data-dyn-button-display="Auto" aria-valuenow="-1">
+                                <div class="button-container">
+                                    <span class="button-commandRing imageBinder-emptyImage"></span>
+                                    <span class="button-label button-label-dropDown">Contacts</span>
+                                </div>
+                            </button>
+                            <div class="sysPopup flyoutButton-flyOut layout-root-scope" data-dyn-content="append: '*'" role="menu" data-dyn-content-applied="true" data-dyn-lastvisible="false" style="display: none;"></div>
+                        </div>
+                        <button data-dyn-controlname="DirPartyEntityAssociationUpdate" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Change party association</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div data-dyn-controlname="btngrpCustomerTransactions" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title" id="custtablelistpage_2_btngrpCustomerTransactions_title">Transactions</label>
+                    </div>
+                    <div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <button data-dyn-controlname="mibTransactions" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" disabled="disabled" tabindex="-1" dyn-data-supertooltip="true" data-dyn-button-display="TextOnly">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Transactions</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div data-dyn-controlname="btngrpCustomerBalance" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpCustomerBalance_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">Balance</label>
+                    </div>
+                    <div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <button data-dyn-controlname="mibCustOpenBalanceCurrency" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Balance</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div data-dyn-controlname="btngrpCustomerForecast" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpCustomerForecast_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">Forecast</label>
+                    </div>
+                    <div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <button data-dyn-controlname="mibForecastSalesTable" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Forecast</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div data-dyn-serverid="1575_0" data-dyn-rootserverid="72_0" data-dyn-controlname="btngrpCustomerSetup" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpCustomerSetup_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">Set up</label>
+                    </div>
+                    <div class="group_content layout-container layout-horizontal" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <div class="layout-column layout-container layout-vertical">
+                            <button data-dyn-controlname="mibCustBankAccounts" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                                <div class="button-container">
+                                    <span class="button-commandRing imageBinder-emptyImage"></span>
+                                    <span class="button-label">Bank accounts</span>
+                                </div>
+                            </button>
+                            <button data-dyn-controlname="mibSalesJournalAutoSummary_Cust" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                                <div class="button-container">
+                                    <span class="button-commandRing imageBinder-emptyImage"></span>
+                                    <span class="button-label">Summary update</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div data-dyn-controlname="btngrpCustomerAttachments" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpCustomerAttachments_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">Attachments</label>
+                    </div>
+                    <div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <button ata-dyn-controlname="mibDocuView" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Attachments</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div data-dyn-controlname="MCRBtngrpCatalogs" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_MCRBtngrpCatalogs_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title" id="custtablelistpage_2_MCRBtngrpCatalogs_title">Catalogs</label>
+                    </div>
+                    <div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-bind="layout: $dyn.layout.containerBinding($data)" data-dyn-content-applied="true">
+                        <button data-dyn-controlname="MCRmibSendCatalog" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage" data-dyn-bind="img: $dyn.ui.img($data)"></span>
+                                <span class="button-label">Send catalog</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div data-dyn-controlname="MCRBtngrpCustomerService" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_MCRBtngrpCustomerService_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title">Customer service</label>
+                    </div>
+                    <div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <button data-dyn-controlname="MCRmibCustomerService" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage" data-dyn-bind="img: $dyn.ui.img($data)"></span>
+                                <span class="button-label">Customer service</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div data-dyn-controlname="btngrpTaxRegistration" data-dyn-role="AppBarGroup" class="group button-group" data-dyn-container=".group_content" data-dyn-template-applied="true" aria-labelledby="custtablelistpage_2_btngrpTaxRegistration_title" data-dyn-lastvisible="true">
+                    <div class="group_header">
+                        <label class="group_title" id="custtablelistpage_2_btngrpTaxRegistration_title">Registration</label>
+                    </div>
+                    <div class="group_content layout-container layout-vertical" data-dyn-content="append: '*'" data-dyn-content-applied="true">
+                        <button data-dyn-controlname="mbTaxRegistration" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Registration IDs</span>
+                            </div>
+                        </button>
+                        <button data-dyn-controlname="mbDirPartTaxRegistrationSearch" data-dyn-role="MenuItemButton" class="Auto button dynamicsButton" role="button" type="button" data-dyn-template-applied="true" buttonstyle="Auto" data-dyn-lastvisible="true" tabindex="0" dyn-data-supertooltip="true" data-dyn-button-display="Auto">
+                            <div class="button-container">
+                                <span class="button-commandRing imageBinder-emptyImage"></span>
+                                <span class="button-label">Registration ID search</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button role="button" type="button">
+                <div class="appBar-pin">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,143 @@
+﻿@model IB2B.Localizacion.UI.Models.ArticuloModels
+
+@{
+    ViewBag.Title = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Ajax.BeginForm("Registrar", "Articulo", new AjaxOptions { HttpMethod = "POST", OnSuccess = "RegistroResult" }, new { id = "formArticulo", @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="panel panel-default m-t-sm box box-primary" style="top:200px">
+        <div class="panel-heading p-t-xxs p-b-none">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>
+                        <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp; Artículo - Información SUNAT
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body p-t-xxs">
+            <div class="form-horizontal">
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Id. Artículo</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oArticuloBE.ITEMNMBR, new { @class = "form-control filterItem", value = Model.oArticuloBE.ITEMNMBR })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.oArticuloBE.ITEMNMBR, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Descripción</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.oArticuloBE.ITEMDESC, new { @class = "form-control filterItem", value = Model.oArticuloBE.ITEMDESC })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.oArticuloBE.ITEMDESC, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Plan U de M</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oArticuloBE.UOMSCHDL, new { @class = "form-control filterItem", value = Model.oArticuloBE.UOMSCHDL })
+                    </div>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oArticuloBE.UOMSCHDL, new { @class = "form-control filterItem", value = Model.oArticuloBE.UOMSCHDL })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Categoría</label>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(m => m.oArticuloBE.oCategoriaBE.TB_CATEGORIA_ID, new SelectList(Model.vLCategoriaBE, "TB_CATEGORIA_ID", "TB_CATEGORIA_DESC"), "- Seleccione -", new { @class = "form-control" })
+                    </div>
+                    <label class="control-label col-sm-2"> Porcentaje</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oArticuloBE.C_DETRACCION_PRCNT, new { @class = "form-control filterItem", value = Model.oArticuloBE.C_DETRACCION_PRCNT })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Producto Controlado</label>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(m => m.oArticuloBE.oArticuloControladoBE.TB_CONTROLADO_ID, new SelectList(Model.vLArticuloControladoBE, "TB_CONTROLADO_ID", "TB_CONTROLADO_DESC"), "- Seleccione -", new { @class = "form-control" })
+                    </div>
+                    <label class="control-label col-sm-2"> Cantidad por Presentación</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oArticuloBE.oArticuloControladoBE.TB_CONTROLADO_CANT, new { @class = "form-control filterItem", value = Model.oArticuloBE.oArticuloControladoBE.TB_CONTROLADO_CANT })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oArticuloBE.CB_DRAWBACK, new { @class = "form-control filterItem ", value = Model.oArticuloBE.CB_DRAWBACK }) 
+                    </div>
+                    <label class="control-label col-sm-2">Drawbak</label>
+                    <label class="control-label col-sm-2"> Tolerancia de Dias</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oArticuloBE.TB_TOLERA_DIAS, new { @class = "form-control filterItem", value = Model.oArticuloBE.TB_TOLERA_DIAS })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oArticuloBE.CB_CONTROL, new { @class = "form-control filterItem ", value = Model.oArticuloBE.CB_CONTROL })
+                    </div>
+                    <label class="control-label col-sm-2">Controlado</label>
+                    <label class="control-label col-sm-2"> Tolerancia de Cantidad (%)</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oArticuloBE.TB_TOLERA_CANT, new { @class = "form-control filterItem", value = Model.oArticuloBE.TB_TOLERA_CANT })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oArticuloBE.CB_COMMODITY, new { @class = "form-control filterItem ", value = Model.oArticuloBE.CB_COMMODITY })
+                    </div>
+                    <label class="control-label col-sm-2">Comoditie</label>
+                    <label class="control-label col-sm-2"> Control de Tara 1</label>
+                    <div class="col-sm-2">
+                        @Html.CheckBoxFor(m => m.oArticuloBE.CB_ENVASE1, new { @class = "form-control filterItem ", value = Model.oArticuloBE.CB_ENVASE1 })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oArticuloBE.CB_TRANSFORMA, new { @class = "form-control filterItem ", value = Model.oArticuloBE.CB_TRANSFORMA })
+                    </div>
+                    <label class="control-label col-sm-2">Transformación</label>
+                    <label class="control-label col-sm-2"> Control de Tara 2</label>
+                    <div class="col-sm-2">
+                        @Html.CheckBoxFor(m => m.oArticuloBE.CB_ENVASE2, new { @class = "form-control filterItem ", value = Model.oArticuloBE.CB_ENVASE2 })
+                    </div>
+                </div>
+
+                @Html.HiddenFor(m => m.oComunBE.Flag, new { value = Model.oComunBE.Flag })
+                @Html.HiddenFor(m => m.oArticuloBE.ITEMNMBR, new { value = Model.oArticuloBE.ITEMNMBR })
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    var v_TituloMensaje = 'Registro Artículo';
+    $(document).ready(function () {
+        document.getElementById("btnNuevoRegistro").style.display = "none";
+        document.getElementById("btnEditarRegistro").style.display = "none";
+        $('#@Html.IdFor(m => m.oArticuloBE.ITEMNMBR)').prop('disabled',true);
+        $('#@Html.IdFor(m => m.oArticuloBE.ITEMDESC)').prop('disabled',true);
+        $('#@Html.IdFor(m => m.oArticuloBE.UOMSCHDL)').prop('disabled',true);
+        $('#@Html.IdFor(m => m.oArticuloBE.ITMTRKOP)').focus();
+    });
+
+    function RegistroResult(pData) {
+        if (pData.Resultado == '@IB2B.Localizacion.BE.BE.Constantes.ResultadoSistema.Ok') {
+            location.href = '@Url.Action("Listar", "Articulo")';
+        }
+        else {
+            fc_MensajeBootBox('warning', v_TituloMensaje, pData.Mensaje);
+        }
+    }
+
+    function GuardarRegistro() {
+        var form = $('#formArticulo');
+        if (form.valid()) {
+            var fc_Registrar = function () {
+                $("#formArticulo").submit();
+            }
+            fc_MensajeBootBoxConfirm('info', v_TituloMensaje, "¿Desea guardar la información del Artículo?", fc_Registrar, function () { });
+        }
+    }
+</script>

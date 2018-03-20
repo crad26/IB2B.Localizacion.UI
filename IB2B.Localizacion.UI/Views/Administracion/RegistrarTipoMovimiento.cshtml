@@ -1,0 +1,302 @@
+﻿@model IB2B.Localizacion.UI.Models.TipoMovimientoModel
+@{
+    ViewBag.Title = "RegistrarTipoMovimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel panel-default m-t-sm box box-primary" style="top:200px">
+    <div class="panel-heading p-t-xxs p-b-none">
+        <div class="row">
+            <div class="col-sm-12">
+                <label>
+                    <i class="glyphicon glyphicon-user"></i> &nbsp;&nbsp; Registro de Tipo de Movimiento
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body p-t-xxs">
+
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="input-group mb-3">
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                    <span class="input-group input-group-addon">
+                                        <button class="btn-warning " type="button">
+                                            <span class="glyphicon glyphicon-search">
+                                                
+                                            </span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon">
+                                        Descripcion
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        Tipo
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        Motivo de Traslado
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        Tipo de Doc. Referido
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div> <br /><br /><br />    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        Def. por Usuario 1
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div> <br />  
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        Def. por Usuario 2
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div> <br />  
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        Def. por Usuario 3
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div> <br />  
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        Def. por Usuario 4
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div> <br />                    
+                                      <!---->
+
+
+                </div>
+
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        N. de Cuenta
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                    <span class="input-group input-group-addon">
+                                        <button class="btn-warning " type="button">
+                                            <span class="glyphicon glyphicon-search">
+
+                                            </span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        Descripcion de Cuenta.
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        Tipo de Operación
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                    <span class="input-group input-group-addon">
+                                        <button class="btn-warning " type="button">
+                                            <span class="glyphicon glyphicon-search">
+
+                                            </span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        Desc. de Operación
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon" id="dp">
+                                        ID Sitio Preterminado
+                                    </span>
+                                    @Html.TextBoxFor(model => model.TipoMovimientoBE.Descripcion, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div><br /><br /><br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Activo
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                    <label class="form-check-label" for="defaultCheck2">
+                                        Tiene Referencia
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                                    <label class="form-check-label" for="defaultCheck3">
+                                         Tipo Anulación
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+                                    <label class="form-check-label" for="defaultCheck4">
+                                        Sitio Destino
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
+                                    <label class="form-check-label" for="defaultCheck5">
+                                        Sitio Devolución
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                </div>
+
+
+            </div>
+        </div>
+
+
+     
+
+        <div class="container-fluid">
+            <table id="_jqg_PagoDetraccion" cellpadding="0" cellspacing="0"></table>
+            <div id="pager_Cliente">
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+

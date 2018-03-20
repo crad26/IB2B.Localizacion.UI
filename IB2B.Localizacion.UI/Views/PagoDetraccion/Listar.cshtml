@@ -1,0 +1,303 @@
+﻿@model IB2B.Localizacion.UI.Models.PagoDetraccionModel
+@{
+    ViewBag.Title = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel panel-default m-t-sm box box-primary" style="top:200px">
+    <div class="panel-heading p-t-xxs p-b-none">
+        <div class="row">
+            <div class="col-sm-12">
+                <label>
+                    <i class="glyphicon glyphicon-user"></i> &nbsp;&nbsp; Lista de Pagos Detraccion
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body p-t-xxs">
+
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon">
+                                        ID Chequera
+                                    </span>
+                                    @Html.TextBoxFor(model => model.oPagoDetraccionBE.OChequera.ChequeraId, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+
+                    <!---->
+
+
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group' >
+                                    <span class="input-group-addon" id="dp">
+                                        F. Transac.
+                                    </span>
+                                    @Html.TextBoxFor(model => model.oPagoDetraccionBE.FechaTransaccion, "{0:dd-MM-yyyy}", new { @class = "form-control date-picker"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!---->
+
+
+                </div>
+
+
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon">
+                                        T. Operación
+                                    </span>
+                                    @Html.DropDownListFor(model => model.oPagoDetraccionBE.OTipoOperacion.TipoOperacionId, new SelectList(Model.VLTipoOperacion, "TipoOperacionId", "TipoOperacionNombre"), "- Seleccione -", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class='input-group'>
+                                    <span class="input-group-addon">
+                                        T. de Pago
+                                    </span>
+                                    @Html.DropDownListFor(model => model.oPagoDetraccionBE.OTipoPago.TipoPagoId, new SelectList(Model.VLTipoPago, "TipoPagoId", "TipoPagoNombre"), "- Seleccione -", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="custom-file">
+                        <br />
+                        <input type="file" class="custom-file-input" id="inputGroupFile01">
+                        <label class="custom-file-label" for="inputGroupFile01">Ruta de Archivo</label>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-4" style="padding-right:50px" >
+                    <div class="row">
+                        <div class='input-group '>
+                            <span class="input-group-addon">
+                                N. Operación
+                            </span>
+                            @Html.TextBoxFor(model => model.oPagoDetraccionBE.FechaTransaccion, new { @class = "form-control" })
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class='input-group'>
+                            <span class="input-group-addon">
+                                N. Archivo
+                            </span>
+                            @Html.TextBoxFor(model => model.oPagoDetraccionBE.FechaTransaccion, new { @class = "form-control" })
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class='input-group'>
+                            <span class="input-group-addon">
+                                Reg. de Impuesto
+                            </span>
+                            @Html.TextBoxFor(model => model.oPagoDetraccionBE.FechaTransaccion, new { @class = "form-control " })
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class='input-group'>
+                            <span class="input-group-addon">
+                                Mont. Tot. Archivo
+                            </span>
+                            @Html.TextBoxFor(model => model.oPagoDetraccionBE.FechaTransaccion, new { @class = "form-control " })
+                        </div>
+                    </div><br />
+                </div>
+
+
+                <div class="col-sm-4 " style="padding-right:50px" >
+                    <div class="row">
+                        <div class='input-group'>
+                            <span class="input-group-addon">
+                                Mont. Tot. Transacción
+                            </span>
+                            @Html.TextBoxFor(model => model.oPagoDetraccionBE.FechaTransaccion, new { @class = "form-control " })
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class='input-group'>
+                            <span class="input-group-addon">
+                                N. de Lote
+                            </span>
+                            @Html.TextBoxFor(model => model.oPagoDetraccionBE.FechaTransaccion, new { @class = "form-control " })
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class='input-group'>
+                            <span class="input-group-addon">
+                                Fecha de Pago
+                            </span>
+                            @Html.TextBoxFor(model => model.oPagoDetraccionBE.FechaTransaccion, new { @class = "form-control " })
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class='input-group'>
+                            <span class="input-group-addon">
+                                Hora de Pago
+                            </span>
+                            @Html.TextBoxFor(model => model.oPagoDetraccionBE.FechaTransaccion, new { @class = "form-control" })
+                        </div>
+                    </div><br />
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="col-sm-4" >
+                    <div class="row">
+                        <div class='input-group col-12' style="margin-left:12px">
+
+                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+          <br />
+        </div>
+    </div>
+
+        <div class="container-fluid">
+            <table id="_jqg_PagoDetraccion" cellpadding="0" cellspacing="0"></table>
+            <div id="pager_Cliente">
+            </div>
+        </div>
+
+</div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+           var v_TituloMensaje = 'Pago Detraccion';
+            $(document).ready(function () {
+                document.getElementById("btnGuardarRegistro").style.display = "none";
+                document.getElementById("btnNuevoRegistro").style.display = "none";
+                BuscarCliente(true);
+                fc_jqgrid_responsive_table();
+            });
+
+            function BuscarCliente(pEsInicial) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ListaPagoDetraccionCriterio", "PagoDetraccion")',
+                    data: { "pRUC": $('#@Html.IdFor(m => m.oComunBE.Criterio01)').val(), "pRazonSocial": $('#@Html.IdFor(m => m.oComunBE.Criterio02)').val() },
+                    success: function (pData) {
+                        if (pData.Resultado == '@IB2B.Localizacion.BE.BE.Constantes.ResultadoSistema.Error') {
+                            fc_MensajeBootBox('danger', v_TituloMensaje, pData.Mensaje);
+                        }
+                        else {
+                            if (pEsInicial) {
+                                CargarListaCliente(pData);
+                            }
+                            else {
+                                $('[id*=_jqg_PagoDetraccion]').jqGrid('clearGridData');
+                                $('[id*=_jqg_PagoDetraccion]').jqGrid('setGridParam', { datatype: "local", data: pData, mtype: 'GET' }).trigger('reloadGrid');
+                            }
+                        }
+                    },
+                    Error: function () {
+                        fc_MensajeBootBox('danger', v_TituloMensaje, 'Ocurrió un error inesperado, coordine con el área de sistemas.');
+                    }
+                });
+                fc_jqgrid_responsive_table();
+            }
+
+    function CargarListaCliente(pData) {
+                var grid = $("#_jqg_PagoDetraccion"),
+                  pagerSelector = "#pager_Cliente";
+                grid.jqGrid({
+                    datatype: "local",
+                    data: pData,
+                    colNames: ['Constancia', 'Nro Comprobante', 'Nro de Pago', 'Monto Det', 'Periodo'],
+                    colModel: [
+                        { name: 'Constancia', index: 'Constancia', editable: false, resizable: false, width: 70, sortable: false, hidden: true },
+                        { name: 'NumeroComprobante', index: 'NumeroComprobante', editable: false, resizable: false, width: 70, sortable: false, },
+                        { name: 'NumeroPago', index: 'NumeroPago', editable: false, resizable: false, width: 100, sortable: false },
+
+                        { name: 'MontoDet', index: 'MontoDet', editable: false, resizable: false, width: 100, sortable: false },
+                        { name: 'periodo', index: 'periodo', editable: false, resizable: false, width: 100, sortable: false },
+                    ],
+                    loadtext: "Por favor Espere...",
+                    pager: pagerSelector,
+                    rowNum: 20,
+                    rowList: [30, 40, 50],
+                    viewrecords: true,
+                    caption: "Lista de Clientes",
+                    loadonce: false,
+                    height: '300',
+                    emptyrecords: 'No hay resultados',
+                    jsonReader: {
+                        root: "rows",
+                        total: "total",
+                        page: "page",
+                        records: "records",
+                        repeatitems: true,
+                        id: "CUSTNMBR"
+                    },
+                    shrinkToFit: false,
+                    autowidth: false,
+                    multiselect: false
+                }).navGrid('#pager_CRol', { view: false, del: false, add: false, edit: false, search: false, refresh: false });
+                fc_jqgrid_responsive_table();
+            }
+
+            function EditarItem() {
+
+                var c_RowId = $("#_jqg_PagoDetraccion").jqGrid('getGridParam', 'selrow');
+                var c_RowData = jQuery("#_jqg_PagoDetraccion").getRowData(c_RowId);
+                if (String(c_RowData["Url_Detalle"]) != '') {
+                    window.location.href = c_RowData["Url_Detalle"];
+                }
+                else {
+                    fc_MensajeBootBox('warning', v_TituloMensaje, 'No se encontró la línea seleccionada.');
+                }
+            }
+</script>
+

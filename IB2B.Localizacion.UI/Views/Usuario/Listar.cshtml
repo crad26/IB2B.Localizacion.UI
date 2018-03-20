@@ -1,0 +1,158 @@
+﻿@model IB2B.Localizacion.BE.BE.UsuarioBE
+
+@{
+    ViewBag.Title = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel panel-default m-t-sm box box-primary">
+    <div class="panel-heading p-t-xxs p-b-none">
+        <div class="row">
+            <div class="col-sm-12">
+                <label>
+                    <i class="glyphicon glyphicon-user"></i> &nbsp;&nbsp; Lista de Usuario
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body p-t-xxs">
+        <div class="form-horizontal">
+            <div class="form-group m-b-sm">
+                <label class="control-label col-sm-1"> Id. Usuario</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(m => m.UsuarioId, new { @class = "form-control filterItem" })
+                </div>
+
+                <label class="control-label col-sm-1"> Usuario</label>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.Usuario_Usu, new { @class = "form-control filterItem" })
+                </div>
+            </div>
+            <div class="form-group m-b-sm" align="center" style="margin: 0 auto; width:100%">
+                <a id="btn_Buscar_Reque" class="btn btn-primary" onclick="BuscarUsuario()">
+                    <i class="glyphicon glyphicon-search"></i> Buscar
+                </a>
+                <a id="btn_Buscar_Reque" class="btn btn-success" onclick="location.href = '@Url.Action("Registrar", "Usuario")';">
+                    <i class="glyphicon glyphicon-plus"></i> Nuevo
+                </a>
+            </div>
+            <br />
+            <div class="container-fluid">
+                <table id="_jqg_Usuario" cellpadding="0" cellspacing="0"></table>
+                <div id="pager_Usuario">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var v_TituloMensaje = 'Usuario';
+    $(document).ready(function () {
+        BuscarUsuario(true);
+        fc_jqgrid_responsive_table();
+    });
+
+    function BuscarUsuario(pEsInicial) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ListaUsuarioCriterio", "Usuario")',
+            data: { "pUsuarioId": $('#@Html.IdFor(m => m.UsuarioId)').val(), "pNombre_Usu": $('#@Html.IdFor(m => m.Usuario_Usu)').val() },
+            success: function (pData) {
+                if (pData.Resultado == '@IB2B.Localizacion.BE.BE.Constantes.ResultadoSistema.Error') {
+                    fc_MensajeBootBox('danger', v_TituloMensaje, pdata.Mensaje);
+                }
+                else {
+                    if (pEsInicial) {
+                        CargarListaUsuario(pData);
+                    }
+                    else {
+                        $('[id*=_jqg_Usuario]').jqGrid('clearGridData');
+                        $('[id*=_jqg_Usuario]').jqGrid('setGridParam', { datatype: "local", data: pData, mtype: 'GET' }).trigger('reloadGrid');
+                    }
+                }
+            },
+            Error: function () {
+                fc_MensajeBootBox('danger', v_TituloMensaje, 'Ocurrió un error inesperado, coordine con el área de sistemas.');
+            }
+        });
+        fc_jqgrid_responsive_table();
+    }
+
+    function CargarListaUsuario(pData) {
+        var grid = $("#_jqg_Usuario"),
+          pagerSelector = "#pager_Usuario";
+        grid.jqGrid({
+            datatype: "local",
+            data: pData,
+            colNames: ['', '', '', 'Id. Usuario', 'Usuario'],
+            colModel: [
+                { name: 'Editar', index: 'Editar', width: 30, align: 'center', title: false, sortable: false, formatter: formatImageEditar },
+                { name: 'Eliminar', index: 'Eliminar', width: 30, align: 'center', title: false, sortable: false, formatter: formatImageEliminar },
+                { name: 'Url_Detalle', index: 'Url_Detalle', editable: false, resizable: false, width: 70, sortable: false, hidden: true },
+                { name: 'UsuarioId', index: 'UsuarioId', editable: false, resizable: false, width: 70, sortable: false, },
+                { name: 'Usuario_Usu', index: 'Usuario_Usu', editable: false, resizable: false, width: 100, sortable: false }
+            ],
+            loadtext: "Por favor Espere...",
+            pager: pagerSelector,
+            rowNum: 10,
+            rowList: [10, 20, 30],
+            viewrecords: true,
+            caption: "Lista de Usuarios",
+            loadonce: false,
+            height: '300',
+            emptyrecords: 'No hay resultados',
+            jsonReader: {
+                root: "rows",
+                total: "total",
+                page: "page",
+                records: "records",
+                repeatitems: true,
+                id: "UsuarioId"
+            },
+            shrinkToFit: false,
+            autowidth: false,
+            multiselect: false
+        }).navGrid('#pager_CRol', { view: false, del: false, add: false, edit: false, search: false, refresh: false });
+        fc_jqgrid_responsive_table();
+    }
+
+    function formatImageEditar(cellValue, options, rowObject) {
+        var formatHtml = '<a class="btn btn-xs btn-success dim" style="color:white;"  data-toggle="tooltip" data-placement="bottom" data-original-title="Editar Usuario"  href="' + rowObject["Url_Detalle"] + '"> <i class="glyphicon glyphicon-pencil"></i> </a>';
+        return formatHtml;
+    }
+
+    function formatImageEliminar(cellValue, options, rowObject) {
+        var formatHtml = '<a class="btn btn-xs btn-success dim" style="color:white;" href="#" data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar Usuario"onclick="EliminarUsuario(\'' + rowObject["UsuarioId"] + '\',\'' + options.rowId + '\')"> <i class="glyphicon glyphicon-remove"></i>' + '</a>';
+        return formatHtml;
+    }
+
+    function EditarUsuario(pUsuario, pRowId) {
+        location.href = '@Url.Action("Registrar", "Usuario")?pUsuarioId=' + pUsuario;
+    }
+
+    function EliminarUsuario(pUsuario, pRowId) {
+        var fc_Eliminar = function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("EliminarUsuario", "Usuario")',
+                data: { "pUsuarioId": pUsuario },
+                success: function (pData) {
+                    if (pData.Resultado == '@IB2B.Localizacion.BE.BE.Constantes.ResultadoSistema.Error') {
+                        fc_MensajeBootBoxConfirm('warning', v_TituloMensaje, pData.Mensaje, function () { }, function () { });
+                    }
+                    else {
+                        $("#_jqg_Usuario").jqGrid('delRowData', pRowId);
+                        $("#_jqg_Usuario").trigger('reloadGrid');
+                    }
+                },
+                Error: function () {
+                    fc_MensajeBootBox('danger', v_TituloMensaje, 'Ocurrió un error inesperado, coordine con el área de sistemas.');
+                }
+            });
+        }
+        fc_MensajeBootBoxConfirm('info', v_TituloMensaje, '¿Está seguro de eliminar el usuario?', fc_Eliminar, function () { });
+    }
+
+</script>

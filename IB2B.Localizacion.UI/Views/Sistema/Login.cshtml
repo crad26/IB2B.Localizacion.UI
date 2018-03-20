@@ -1,0 +1,213 @@
+﻿@model IB2B.Localizacion.BE.BE.UsuarioBE
+
+@{
+    ViewBag.Title = "E-PAD DIRESA | Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/App/Login.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-PAD DIRESA | Login</title>
+</head>
+<body>
+    <h1 class="title text-center opcion_iluminada">E-PAD DIRESA</h1>
+    @using (Html.BeginForm(" ", " ", new { ReturnUrl = "" }, FormMethod.Post, new { @class = "form-horizontal form", role = "form" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group m-b-sm" id="divLogin">
+            <div class="col-sm-12">
+                <center>
+                    <label style="color:white">
+                        INICIAR SESIÓN
+                    </label>
+                </center>
+            </div>
+            <br />
+            <div class="form-group m-b-sm">
+                <div class="input-group col-sm-12">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    @Html.TextBoxFor(m => m.UsuarioId, new { id = "txtUsuarioId", @class = "form-control filterItem", @placeholder = "Usuario" })
+                </div>
+                @Html.ValidationMessageFor(m => m.UsuarioId, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group m-b-sm">
+                <div class="input-group col-sm-12">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    @Html.PasswordFor(m => m.Contrasenia_Usu, new { id = "txtContrasenia", @class = "form-control", @placeholder = "Contraseña" })
+                </div>
+                @Html.ValidationMessageFor(m => m.Contrasenia_Usu, "", new { @class = "text-danger" })
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 text-center">
+                    <button type="button" class="btn btn-success" onclick="Ingresar()">Ingresar</button>
+                </div>
+            </div>
+            <p><br /></p>
+            <div class="row">
+                <div class="col-lg-7 text-center" style="color:white">
+                    <a href="#" onclick="AbrirDivOlvidarContrasenia()" style="color:white">¿Olvidaste tu contraseña?</a>
+                </div>
+            </div>
+        </div>
+        <div id="divRecuperar" class="container" style="display: none;">
+            <p><br /></p>
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <div class="panel-default panel-box-shadow">
+                        <div class="panel-heading p-t-xxs p-b-none">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <center>
+                                        <label>
+                                            RECUPERAR PASSWORD
+                                        </label>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body form-horizontal">
+                            <div class="form-group m-b-sm">
+                                <div class="input-group col-sm-12">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                    @Html.TextBoxFor(m => m.UsuarioId, new { id = "txtUsuarioRecuperar", @class = "form-control filterItem", @placeholder = "Usuario" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.UsuarioId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10 col-lg-offset-1 text-center">
+                                    <button type="button" class="btn btn-primary" onclick="EnviarCorreo()">Enviar</button>
+                                    <button type="button" class="btn btn-primary" onclick="CancelarRecuperar()">Cancelar</button>
+                                </div>
+                            </div>
+                            <p><br /></p>
+                            <div id="divMensajeError" class="alert alert-danger" role="alert" style="display: none;">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Error:</span>
+                                <label class="control-label" id="lblMensajeError">Usuario o Contraseña incorrecto.</label>
+                            </div>
+                            <p><br /></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <link href="~/Content/Site.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        @Scripts.Render("~/bundles/jquery")
+
+    }
+    @section Scripts
+    {
+    }
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/bootstrap")
+    <div class="text-center loading_page" id="loading-page" style="display:none;z-index:2041 !important;">
+        <center class="text-center inline">
+            <img src="~/Imagen/ajax-loader.gif" alt="Cargando.." class="center-block" />
+            <label style="color:blue" class="inline"> &nbsp;&nbsp;&nbsp; Cargando por favor espere... </label>
+        </center>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var v_TituloMensaje = 'Login';
+    $(document).ready(function () {
+        $("#txtUsuarioId").focus();
+        $("#txtContrasenia").keyup(function(event){
+            if(event.keyCode == 13){
+                Ingresar();
+            }
+        });
+        $("#txtUsuarioRecuperar").keyup(function(event){
+            if(event.keyCode == 13){
+                EnviarCorreo();
+            }
+        });
+    });
+
+    function Ingresar() {
+        localStorage.setItem("v_MenuId", "");
+        localStorage.setItem("v_SubMenuId", "");
+        localStorage.clear();
+        var form = $('form');
+        $("#txtUsuarioRecuperar").val('e&s');
+        if(form.valid()) {
+            var varUsuarioBE = @(Html.Raw(Json.Encode(@Model)));
+            varUsuarioBE.UsuarioId =  $("#txtUsuarioId").val()
+            varUsuarioBE.Usuario_Usu =   $("#txtContrasenia").val()
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("IngresoSistema", "Sistema")',
+                data: varUsuarioBE,
+                success: function (pData) {
+                    if(pData.Resultado == '@IB2B.Localizacion.BE.BE.Constantes.ResultadoSistema.Ok') {
+                        if(pData.Mensaje != null){
+                            var fc_Location = function ()
+                            {
+                                location.href = '@Url.Action("Inicio", "Sistema")';
+                            }
+                            fc_MensajeBootBox('warning', v_TituloMensaje, pData.Mensaje);
+                        }
+                        else
+                        {
+                            location.href = '@Url.Action("Inicio", "Sistema")';
+                        }
+                    }
+                    else {
+                        fc_MensajeBootBox('warning', v_TituloMensaje, pData.Mensaje);
+                    }
+                },
+                Error: function () {
+                    alert('Error no controlado.');
+                }
+            });
+        }
+    }
+
+    function AbrirDivOlvidarContrasenia() {
+        $("#txtUsuarioRecuperar").val('');
+        document.getElementById('divLogin').style.display = 'none';
+        document.getElementById('divRecuperar').style.display = 'inherit';
+        $("#txtUsuarioRecuperar").focus();
+    }
+
+    function CancelarRecuperar() {
+        $("#txtUsuarioId").val('');
+        $("#txtContrasenia").val('');
+        document.getElementById('divRecuperar').style.display = 'none';
+        document.getElementById('divLogin').style.display = 'inherit';
+        $("#txtUsuarioId").focus();
+    }
+
+    function EnviarCorreo() {
+        var v_Resultado = 'danger';
+        var form = $('form');
+        $('#@Html.IdFor(m => m.UsuarioId)').val('e&s');
+        $('#@Html.IdFor(m => m.Contrasenia_Usu)').val('e&s');
+        if(form.valid()) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("RecuperarPassword", "Sistema")',
+                data: { pEmpresaId:$("#ddRUCRecuperar").val() , pUsuarioId: $("#txtUsuarioRecuperar").val() },
+                success: function (pdata) {
+                    if(pdata.Resultado == 'Ok') {
+                        v_Resultado = 'success';
+                        CancelarRecuperar();
+                    }
+                    fc_MensajeBootBox(v_Resultado, v_TituloMensaje, pdata.Mensaje);
+                },
+                Error: function () {
+                    alert('Error no controlado.');
+                }
+            });
+        }
+    }
+</script>

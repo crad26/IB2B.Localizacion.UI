@@ -1,0 +1,526 @@
+﻿@model IB2B.Localizacion.UI.Models.ConfigLocalizacionModel
+@{
+    ViewBag.Title = "ListaConfigLocalizacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default m-t-sm box box-primary" style="top:200px">
+    <div class="panel-heading p-t-xxs p-b-none">
+        <div class="row">
+            <div class="col-sm-12">
+                <label>
+                    <i class="glyphicon glyphicon-user"></i> &nbsp;&nbsp; Configuración de Tipos de Documentos
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="panel-body p-t-xxs">
+        <div class="container-fluid">
+            <table id="_jqg_ListaTipoMovimiento" cellpadding="0" cellspacing="0"></table>
+            <div id="pager_ListaTipoMovimiento">
+            </div>
+        </div><br/>
+
+        <!--INICIO-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="col-sm-12">
+
+
+                        <label>
+                            <i class="glyphicon glyphicon-user"></i> &nbsp;&nbsp; Retención
+                        </label>
+                        <div class="col-sm-12" style="text-align:center">
+                            <div class="form-check">
+                                <br />
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Agente Retenedor
+                                </label>
+                            </div>
+                        </div><br />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                ID Documento
+                            </div>
+                            <div class="col-sm-5 ">
+                                <div class="input-group mb-3">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                    <span class="input-group input-group-addon">
+                                        <button class="btn-warning " type="button">
+                                            <span class="glyphicon glyphicon-arrow-right">
+                                            </span>
+                                        </button>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:-13px">
+                            <div class="col-sm-6">
+                                Chequera Intermedia
+                            </div>
+                            <div class="col-sm-5 ">
+                                <div class="input-group mb-3">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                    <span class="input-group input-group-addon">
+                                        <button class="btn-warning " type="button">
+                                            <span class="glyphicon glyphicon-search">
+                                            </span>
+                                        </button>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:-13px">
+                            <div class="col-sm-6">
+                                Monto Base
+                            </div>
+                            <div class="col-sm-5 ">
+                                @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                Prefijo Cobro Retención
+                            </div>
+                            <div class="col-sm-5 ">
+                                @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                Prefijo Pago Retención
+                            </div>
+                            <div class="col-sm-5 ">
+                                @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                    </div><br /><br /><br /><br />
+                    <div class="col-sm-12">
+                            <label>
+                                <i class="glyphicon glyphicon-list"></i> &nbsp;&nbsp; Listas
+                            </label>
+
+                            <div class="row">
+                                <div class="col-sm-6"><br />
+                                    BD Intermedia
+                                </div>
+                                <div class="col-sm-5 ">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    Clase Cont.Analitica
+                                </div>
+                                <div class="col-sm-5 ">
+                                    <div class="input-group mb-3">
+                                        @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                        <span class="input-group input-group-addon">
+                                            <button class="btn-warning " type="button">
+                                                <span class="glyphicon glyphicon-search">
+                                                </span>
+                                            </button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:-13px">
+                                <div class="col-sm-6">
+                                    Versión Dynamic GP
+                                </div>
+                                <div class="col-sm-5 ">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    BD Dynamic GP
+                                </div>
+                                <div class="col-sm-5 ">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+                    <!--FIN DE RETENCION-->
+                    <!--DETRACCION-->
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-12">
+                            <label>
+                                <i class="glyphicon glyphicon-user"></i> &nbsp;&nbsp; Detraccion
+                            </label>
+                            <div class="col-sm-12" style="text-align:center">
+                                <div class="form-check">
+                                    <br />
+
+                                    <label class="form-check-label" for="defaultCheck1">
+
+                                    </label>
+                                </div>
+                            </div><br />
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    Num. Decimales SPOT
+                                </div>
+                                <div class="col-sm-5 ">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    ID Banco Nación
+                                </div>
+                                <div class="col-sm-5 ">
+                                    <div class="input-group mb-3">
+                                        @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                        <span class="input-group input-group-addon">
+                                            <button class="btn-warning " type="button">
+                                                <span class="glyphicon glyphicon-search">
+                                                </span>
+                                            </button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:-13px">
+                                <div class="col-sm-6">
+                                    Nombre de Banco
+                                </div>
+                                <div class="col-sm-5 ">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    Prefijo Cobro Detracción
+                                </div>
+                                <div class="col-sm-5 ">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    Prefijo Pago Detracción
+                                </div>
+                                <div class="col-sm-5 ">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div><br /><br /><br /><br />
+
+                        <div class="col-sm-12">
+                            <label>
+                                <i class="glyphicon glyphicon-user"></i> &nbsp;&nbsp; Categoría de Artículo
+                            </label>
+                            <div class="row">
+                                <div class="col-sm-6"><br />
+                                    Long. Categoría 1
+                                </div>
+                                <div class="col-sm-5 ">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6" style="line-height:30px">
+                                    Long. Categoría 2
+                                </div>
+                                <div class="col-sm-5 ">
+                                    <div class="input-group mb-3">
+                                        @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                        <span class="input-group input-group-addon">
+                                            <button class="btn-warning " type="button">
+                                                <span class="glyphicon glyphicon-search">
+                                                </span>
+                                            </button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:-13px">
+                                <div class="col-sm-6">
+                                    Long. Categoría 3
+                                </div>
+                                <div class="col-sm-5 ">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    Long. Categoría 4
+                                </div>
+                                <div class="col-sm-5 ">
+                                    @Html.TextBoxFor(model => model.ObConfigLocalizacionBE.IDDocumento, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+                    <!--FIN DE DETRACCION-->
+                    <!--OPCIONES-->
+                    <div class="col-sm-4">
+                        <label>
+                            <i class="glyphicon glyphicon-tasks"></i> &nbsp;&nbsp; Opciones
+                        </label>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <br />
+
+                                <label class="form-check-label" for="defaultCheck1">
+
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-check">
+                                    <br />
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck10">
+                                    <label class="form-check-label" for="defaultCheck10">
+                                        Activar Nro. Serie por Sitios                                  Series
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-check">
+                                    <br />
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                    <label class="form-check-label" for="defaultCheck2">
+                                        Permitir edición de correlativo de Ventas
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-check">
+                                    <br />
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                                    <label class="form-check-label" for="defaultCheck3">
+                                        Activar busqueda por categoria
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-check">
+                                    <br />
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+                                    <label class="form-check-label" for="defaultCheck4">
+                                        Auto-generar codigos de artículo
+                                    </label>
+                                </div>
+                            </div>
+                        </div><br />
+                        <div class="row" style="margin-left:0px">
+                            <div class="col-sm-13">
+                                <div class="input-group mb-3">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
+                                    <label class="form-check-label" for="defaultCheck5">
+                                        Utilizar mismas cts 60/61 para CDescargas
+                                    </label>
+                                    <span class="input-group input-group-addon">
+                                        <button class="btn-warning " type="button">
+                                            <span class="glyphicon glyphicon-arrow-right">
+                                            </span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:-30px">
+                            <div class="col-sm-12">
+                                <div class="form-check">
+                                    <br />
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck6">
+                                    <label class="form-check-label" for="defaultCheck6">
+                                        Requerir información Cliente y Proveedor
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left:0px;margin-top:10px">
+                            <div class="col-sm-13">
+                                <div class="input-group mb-3">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck7">
+                                    <label class="form-check-label" for="defaultCheck7">
+                                        Activar retenciones por documento
+                                    </label>
+                                    <span class="input-group input-group-addon">
+                                        <button class="btn-warning " type="button">
+                                            <span class="glyphicon glyphicon-arrow-right">
+                                            </span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:-30px">
+                            <div class="col-sm-12">
+                                <div class="form-check">
+                                    <br />
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck8">
+                                    <label class="form-check-label" for="defaultCheck8">
+                                        Permitir tipos de cambio duplicados
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-check">
+                                    <br />
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck9">
+                                    <label class="form-check-label" for="defaultCheck9">
+                                        Activar aplicaciones automaticas
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            <!--FILA 02-->
+            <div class="row" >
+            <!--FIN DE LISTAS-->
+
+            <!--CATEGORIA-->
+            <div class="col-sm-4">
+
+            </div>
+            <!--FIN DE CATEGORIA-->
+            
+        </div>
+                <!--FIN DE FILA 03-->
+
+
+        </div>
+        <!--FIN-->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+           var v_TituloMensaje = 'Configuracion de Localizacion';
+            $(document).ready(function () {
+                document.getElementById("btnGuardarRegistro").style.display = "none";
+                document.getElementById("btnNuevoRegistro").style.display = "none";
+                BuscarTipoMovimiento(true);
+                fc_jqgrid_responsive_table();
+            });
+
+            function BuscarTipoMovimiento(pEsInicial) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ListarConfigLocalizacion", "Administracion")',
+                    data: { "pRUC": $('#@Html.IdFor(m => m.oComunBE.Criterio01)').val(), "pRazonSocial": $('#@Html.IdFor(m => m.oComunBE.Criterio02)').val() },
+                    success: function (pData) {
+                        if (pData.Resultado == '@IB2B.Localizacion.BE.BE.Constantes.ResultadoSistema.Error') {
+                            fc_MensajeBootBox('danger', v_TituloMensaje, pData.Mensaje);
+                        }
+                        else {
+                            if (pEsInicial) {
+                                CargarListaTipoMovimiento(pData);
+                            }
+                            else {
+                                $('[id*=_jqg_ListaTipoMovimiento]').jqGrid('clearGridData');
+                                $('[id*=_jqg_ListaTipoMovimiento]').jqGrid('setGridParam', { datatype: "local", data: pData, mtype: 'GET' }).trigger('reloadGrid');
+                            }
+                        }
+                    },
+                    Error: function () {
+                        fc_MensajeBootBox('danger', v_TituloMensaje, 'Ocurrió un error inesperado, coordine con el área de sistemas.');
+                    }
+                });
+                fc_jqgrid_responsive_table();
+            }
+
+    function CargarListaTipoMovimiento(pData) {
+                var grid = $("#_jqg_ListaTipoMovimiento"),
+                  pagerSelector = "#pager_ListaTipoMovimiento";
+
+                grid.jqGrid({
+                    datatype: "local",
+                    data: pData,
+                       colNames: ['TipoDocumentoID', 'TipoDocumentoNombre', 'Abreviado', 'Serie', 'Correlativo', 'Libro Compra', 'Libro Venta', 'Modulo Compra', 'Modulo Venta', 'Modulo Inventario'],
+                    colModel: [
+                             { name: 'oTipoDocumento.TipoDocumentoID', index: 'oTipoDocumento.TipoDocumentoID', editable: false, resizable: false, width: '100%', sortable: false, },
+                             { name: 'oTipoDocumento.TipoDocumentoNombre', index: 'oTipoDocumento.TipoDocumentoNombre', editable: false, width: '100%', resizable: false, sortable: false, },
+                        { name: 'Abreviado', index: 'OCuenta.NumeroCuenta', align: "center", editoptions: { value: "True:False" }, width: '100%', editrules: { required: true }, formatter: "checkbox", formatoptions: { disabled: false }, editable: true, resizable: false, width: 100, sortable: false },
+                        { name: '#Serie', index: 'OCuenta.NumeroCuenta', align: "center", editoptions: { value: "True:False" }, width: '100%', editrules: { required: true }, formatter: "checkbox", formatoptions: { disabled: false }, editable: true, resizable: false, width: 100, sortable: false },
+                        { name: '#Correlativo', index: 'OCuenta.NumeroCuenta', align: "center", editoptions: { value: "True:False" }, width: '100%', editrules: { required: true }, formatter: "checkbox", formatoptions: { disabled: false }, editable: true, resizable: false, width: 100, sortable: false },
+                        { name: 'Libro Compra', index: 'OCuenta.NumeroCuenta', align: "center", editoptions: { value: "True:False" }, width: '100%', editrules: { required: true }, formatter: "checkbox", formatoptions: { disabled: false }, editable: true, resizable: false, width: 100, sortable: false },
+                          { name: 'Libro Venta', index: 'OCuenta.NumeroCuenta', align: "center", editoptions: { value: "True:False" }, width: '100%', editrules: { required: true }, formatter: "checkbox", formatoptions: { disabled: false }, editable: true, resizable: false, width: 100, sortable: false },
+                        { name: 'Modulo Compra', index: 'OCuenta.NumeroCuenta', align: "center", editoptions: { value: "True:False" }, width: '100%', editrules: { required: true }, formatter: "checkbox", formatoptions: { disabled: false }, editable: true, resizable: false, width: 100, sortable: false },
+                        { name: 'Modulo Venta', index: 'OCuenta.NumeroCuenta', align: "center", editoptions: { value: "True:False" }, width: '100%', editrules: { required: true }, formatter: "checkbox", formatoptions: { disabled: false }, editable: true, resizable: false, width: 100, sortable: false },
+                        { name: 'Modulo Inventario', index: 'OCuenta.NumeroCuenta', align: "center", editoptions: { value: "True:False" }, width: '100%', editrules: { required: true }, formatter: "checkbox", formatoptions: { disabled: false }, editable: true, resizable: false, width: 100, sortable: false },
+
+                    ],
+                    loadtext: "Por favor Espere...",
+                    pager: pagerSelector,
+                    rowNum: 20,
+                    rowList: [30, 40, 50],
+                    viewrecords: true,
+                    caption: "Lista de Clientes",
+                    loadonce: false,
+                    height: '100',
+                    emptyrecords: 'No hay resultados',
+                    jsonReader: {
+                        root: "rows",
+                        total: "total",
+                        page: "page",
+                        records: "records",
+                        repeatitems: true,
+                        id: "CUSTNMBR"
+                    },
+                    shrinkToFit: false,
+                    autowidth: false,
+                    multiselect: false
+                }).navGrid('#pager_ListaTipoMovimiento', { view: false, del: false, add: false, edit: false, search: false, refresh: false });
+                fc_jqgrid_responsive_table();
+
+
+
+            }
+
+            function EditarItem() {
+
+                var c_RowId = $("#_jqg_ListaTipoMovimiento").jqGrid('getGridParam', 'selrow');
+                var c_RowData = jQuery("#_jqg_PagoDetraccion").getRowData(c_RowId);
+                if (String(c_RowData["Url_Detalle"]) != '') {
+                    window.location.href = c_RowData["Url_Detalle"];
+                }
+                else {
+                    fc_MensajeBootBox('warning', v_TituloMensaje, 'No se encontró la línea seleccionada.');
+                }
+            }
+</script>
+
+

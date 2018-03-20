@@ -1,0 +1,135 @@
+﻿@model IB2B.Localizacion.UI.Models.ProveedorModels
+
+@{
+    ViewBag.Title = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel panel-default m-t-sm box box-primary" style="top:200px">
+    <div class="panel-heading p-t-xxs p-b-none">
+        <div class="row">
+            <div class="col-sm-12">
+                <label>
+                    <i class="glyphicon glyphicon-user"></i> &nbsp;&nbsp; Lista de Proveedores
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body p-t-xxs">
+        <div class="form-horizontal">
+            <div class="form-group m-b-sm">
+                <label class="control-label col-sm-1"> RUC</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(m => m.oComunBE.Criterio01, new { @class = "form-control filterItem" })
+                </div>
+
+                <label class="control-label col-sm-1"> Razón Social</label>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(m => m.oComunBE.Criterio02, new { @class = "form-control filterItem" })
+                </div>
+            </div>
+            <div class="form-group m-b-sm" align="center" style="margin: 0 auto; width:100%">
+                <a id="btn_Buscar_Reque" class="btn btn-primary" onclick="BuscarProveedor()">
+                    <i class="glyphicon glyphicon-search"></i> Buscar
+                </a>
+            </div>
+            <br />
+            <div class="container-fluid">
+                <table id="_jqg_Proveedor" cellpadding="0" cellspacing="0"></table>
+                <div id="pager_Proveedor">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    var v_TituloMensaje = 'Proveedor';
+    $(document).ready(function () {
+        document.getElementById("btnGuardarRegistro").style.display = "none";
+        document.getElementById("btnNuevoRegistro").style.display = "none";
+        BuscarProveedor(true);
+        fc_jqgrid_responsive_table();
+    });
+
+    function BuscarProveedor(pEsInicial) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ListaProveedorCriterio", "Proveedor")',
+            data: { "pRUC": $('#@Html.IdFor(m => m.oComunBE.Criterio01)').val(), "pRazonSocial": $('#@Html.IdFor(m => m.oComunBE.Criterio02)').val() },
+            success: function (pData) {
+                if (pData.Resultado == '@IB2B.Localizacion.BE.BE.Constantes.ResultadoSistema.Error') {
+                    fc_MensajeBootBox('danger', v_TituloMensaje, pData.Mensaje);
+                }
+                else {
+                    if (pEsInicial) {
+                        CargarListaProveedor(pData);
+                    }
+                    else {
+                        $('[id*=_jqg_Proveedor]').jqGrid('clearGridData');
+                        $('[id*=_jqg_Proveedor]').jqGrid('setGridParam', { datatype: "local", data: pData, mtype: 'GET' }).trigger('reloadGrid');
+                    }
+                }
+            },
+            Error: function () {
+                fc_MensajeBootBox('danger', v_TituloMensaje, 'Ocurrió un error inesperado, coordine con el área de sistemas.');
+            }
+        });
+        fc_jqgrid_responsive_table();
+    }
+
+    function CargarListaProveedor(pData) {
+        var grid = $("#_jqg_Proveedor"),
+          pagerSelector = "#pager_Proveedor";
+        grid.jqGrid({
+            datatype: "local",
+            data: pData,
+            colNames: [ '', 'Id. Proveedor', 'Descripción', 'Tipo Persona', 'Tipo Documento', 'Nro. Documento', 'Razón Social'],
+            colModel: [                
+                { name: 'Url_Detalle', index: 'Url_Detalle', editable: false, resizable: false, width: 70, sortable: false, hidden: true },
+                { name: 'VENDORID', index: 'VENDORID', editable: false, resizable: false, width: 70, sortable: false, },
+                { name: 'VENDNAME', index: 'VENDNAME', editable: false, resizable: false, width: 100, sortable: false },
+                { name: 'oTipoPersonaBE.TipoPersonaNombre', index: 'oTipoPersonaBE.TipoPersonaNombre', editable: false, resizable: false, width: 100, sortable: false },
+                { name: 'oTipoDocumentoBE.TipoDocumentoNombre', index: 'oTipoDocumentoBE.TipoDocumentoNombre', editable: false, resizable: false, width: 100, sortable: false },
+                { name: 'TB_NRO_DOCUMENTO', index: 'TB_NRO_DOCUMENTO', editable: false, resizable: false, width: 100, sortable: false },
+                { name: 'TB_RAZON_SOCIAL', index: 'TB_RAZON_SOCIAL', editable: false, resizable: false, width: 100, sortable: false },            
+            ],
+            loadtext: "Por favor Espere...",
+            pager: pagerSelector,
+            rowNum: 20,
+            rowList: [30, 40, 50],
+            viewrecords: true,
+            caption: "Lista de Proveedor",
+            loadonce: false,
+            height: '300',
+            emptyrecords: 'No hay resultados',
+            jsonReader: {
+                root: "rows",
+                total: "total",
+                page: "page",
+                records: "records",
+                repeatitems: true,
+                id: "VENDORID"
+            },
+            shrinkToFit: false,
+            autowidth: false,
+            multiselect: false
+        }).navGrid('#pager_CRol', { view: false, del: false, add: false, edit: false, search: false, refresh: false });
+        fc_jqgrid_responsive_table();
+    }
+
+    function EditarItem() {
+       
+        var c_RowId = $("#_jqg_Proveedor").jqGrid('getGridParam', 'selrow');
+        var c_RowData = jQuery("#_jqg_Proveedor").getRowData(c_RowId);
+        if (String(c_RowData["Url_Detalle"]) != '') {
+            window.location.href = c_RowData["Url_Detalle"];
+        }
+        else {
+            fc_MensajeBootBox('warning', v_TituloMensaje, 'No se encontró la línea seleccionada.');
+        }
+    }
+</script>

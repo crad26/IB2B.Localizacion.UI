@@ -1,0 +1,272 @@
+﻿@model IB2B.Localizacion.UI.Models.PagoMasivoModels
+
+@{
+    ViewBag.Title = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Ajax.BeginForm("Registrar", "PagoMasivo", new AjaxOptions { HttpMethod = "POST", OnSuccess = "RegistroResult" }, new { id = "formPagoMasivo", @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="panel panel-default m-t-sm box box-primary" style="top:200px">
+        <div class="panel-heading p-t-xxs p-b-none">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>
+                        <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp; Transacción Pagos Masivos
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body p-t-xxs">
+            <div class="form-horizontal">           
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-1"> Número de Lote</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oPagoMasivoBE.NumeroLote, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.NumeroLote })
+                    </div>
+                    <label class="control-label col-sm-1"> Tipo Operación</label>
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(m => m.oPagoMasivoBE.oTipoOperacionBE.TipoOperacionId, new SelectList(Model.vLTipoPagoBE, "TipoOperacionId", "TipoOperacionNombre"), "- Seleccione -", new { @class = "form-control" })
+                    </div>
+                    <label class="control-label col-sm-1"> Número Operación</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oPagoMasivoBE.NumeroOperacion, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.NumeroOperacion })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-1"> Fecha de Documento</label>
+                    <div class="col-sm-2 input-group">
+                        @Html.TextBoxFor(m => m.oPagoMasivoBE.FechaDocumento, "{0:dd-MM-yyyy}", new { @class = "form-control filterItem date-picker", value = Model.oPagoMasivoBE.FechaDocumento })
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <label class="control-label col-sm-1"> Tipo Pago</label>
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(m => m.oPagoMasivoBE.oTipoPagoBE.TipoPagoId, new SelectList(Model.vLTipoPagoBE, "TipoPagoId", "TipoPagoNombre"), "- Seleccione -", new { @class = "form-control" })
+                    </div>
+                    <label class="control-label col-sm-1"> ID Tasa de Cambio</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oPagoMasivoBE.oMonedaBE.TasaCambioId, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oMonedaBE.TasaCambioId })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-1"> Estado de Compañia</label>
+                    <div class="col-sm-2">
+                        @Html.CheckBoxFor(m => m.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, })
+                    </div>
+                    <label class="control-label col-sm-1"> ID Chequera</label>
+                    <div class="col-sm-2 input-group">
+                        @Html.TextBoxFor(m => m.oPagoMasivoBE.oChequeraBE.ChequeraId, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oChequeraBE.ChequeraId })
+                        <span class="input-group-addon" style="cursor:pointer"><span class="glyphicon glyphicon-search"></span></span>
+                    </div>
+                    <label class="control-label col-sm-1"> Num. Cheque</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oPagoMasivoBE.oChequeraBE.Numero, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oChequeraBE.Numero })
+                    </div>
+                    <label class="control-label col-sm-1"> Tipo Cambio</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oPagoMasivoBE.oMonedaBE.TipoCambio, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oMonedaBE.TipoCambio })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-1"></label><div class="col-sm-2"></div>
+                    <label class="control-label col-sm-1"> ID Moneda</label>
+                    <div class="col-sm-2 input-group">
+                        @Html.TextBoxFor(m => m.oPagoMasivoBE.oMonedaBE.MonedaId, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oMonedaBE.MonedaId })
+                        <span class="input-group-addon" style="cursor:pointer"><span class="glyphicon glyphicon-search"></span></span>
+                    </div>
+                    <label class="control-label col-sm-1"> Descripción</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oPagoMasivoBE.oMonedaBE.MonedaNomnbre, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oMonedaBE.MonedaNomnbre })
+                    </div>
+                    <label class="control-label col-sm-1"> Núm. Pago asignado</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oPagoMasivoBE.NumeroPagoAsignado, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.NumeroPagoAsignado })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <div class="col-sm-5">
+                    </div>
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, })
+                    </div>
+                    <label class="control-label col-sm-1">Coincidir Banco</label>
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, })
+                    </div>
+                    <label class="control-label col-sm-1">Buen Contribuyente</label>
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, })
+                    </div>
+                    <label class="control-label col-sm-1">Agente Perceptor</label>
+                </div>
+                <div class="form-group m-b-sm">
+                    <div class="col-sm-5 input-group">
+                        @Html.TextBoxFor(m => m.oComunBE.Criterio01, new { @class = "form-control filterItem", value = Model.oComunBE.Criterio01, Placeholder = "Buscar Proveedor" })
+                        <span class="input-group-addon" style="cursor:pointer"><span class="glyphicon glyphicon-search"></span></span>
+                    </div>
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, })
+                    </div>
+                    <label class="control-label col-sm-1">Mostrar marcados</label>
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, })
+                    </div>
+                    <label class="control-label col-sm-1">Agente Retenedor</label>
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, new { @class = "form-control filterItem", value = Model.oPagoMasivoBE.oCompaniaBE.AgenteRetenedor, })
+                    </div>
+                    <label class="control-label col-sm-1">Afecto Renta 4TA</label>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12 col-md-5 col-lg-5">
+                        <div class="thumbnail bootsnipp-thumb">
+                            <table id="_jqg_Proveedor"></table>
+                            <div id="pager_Proveedor">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                        <div class="thumbnail bootsnipp-thumb">
+                            <table id="_jqg_Detalle"></table>
+                            <div id="pager_Detalle">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.HiddenFor(m => m.oComunBE.Flag, new { value = Model.oComunBE.Flag })
+            @Html.HiddenFor(m => m.oPagoMasivoBE.oMonedaBE.MonedaNomnbre, new { value = Model.oPagoMasivoBE.oMonedaBE.MonedaNomnbre })
+            @Html.HiddenFor(m => m.oPagoMasivoBE.oMonedaBE.TipoCambio, new { value = Model.oPagoMasivoBE.oMonedaBE.TipoCambio })
+            @Html.HiddenFor(m => m.oPagoMasivoBE.NumeroOperacion, new { value = Model.oPagoMasivoBE.NumeroOperacion })
+            @Html.HiddenFor(m => m.oPagoMasivoBE.oMonedaBE.TasaCambioId, new { value = Model.oPagoMasivoBE.oMonedaBE.TasaCambioId })
+        </div>
+    </div>
+}
+
+
+<script type="text/javascript">
+    var v_TituloMensaje = 'Pago Masivo';
+    $(document).ready(function () {
+        document.getElementById("btnGuardarRegistro").style.display = "none";
+        document.getElementById("btnNuevoRegistro").style.display = "none";
+        BuscarProveedor(true);
+        fc_jqgrid_responsive_table();
+    });
+
+    function BuscarProveedor(pEsInicial) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ListaProveedorCriterio", "Proveedor")',
+            data: { "pRUC": '', "pRazonSocial": '' },
+            success: function (pData) {
+                if (pData.Resultado == '@IB2B.Localizacion.BE.BE.Constantes.ResultadoSistema.Error') {
+                    fc_MensajeBootBox('danger', v_TituloMensaje, pData.Mensaje);
+                }
+                else {
+                    if (pEsInicial) {
+                        CargarListaProveedor(pData, 1);
+
+                        CargarListaDetalle(pData, 1);
+                    }
+                    else {
+                        CargarListaProveedor(pData, 2);
+                    }
+                }
+            },
+            Error: function () {
+                fc_MensajeBootBox('danger', v_TituloMensaje, 'Ocurrió un error inesperado, coordine con el área de sistemas.');
+            }
+        });
+    }
+
+    function CargarListaProveedor(pData, pTipo) {
+        if (pTipo == 1) {
+            var grid = $("#_jqg_Proveedor"),
+              pagerSelector = "#pager_Proveedor";
+            grid.jqGrid({
+                datatype: "local",
+                data: pData,
+                colNames: ['','Nombre del Proveedor', 'Forma de Pago'],
+                colModel: [
+                    { name: 'Estado', resizable: false, editable: false, resizable: true, width: 30, formatter: 'checkbox', formatoptions: { disabled: false }, align: "center", stype: "select", },
+                    { name: 'VENDNAME', index: 'VENDNAME', editable: false, resizable: false, width: 60, sortable: false },
+                    { name: 'TB_RAZON_SOCIAL', index: 'TB_RAZON_SOCIAL', editable: false, resizable: false, width: 60, sortable: false },
+                ],
+                loadtext: "Por favor Espere...",
+                pager: pagerSelector,
+                rowNum: 20,
+                rowList: [30, 40, 50],
+                viewrecords: true,
+                caption: "Lista de Proveedor",
+                loadonce: false,
+                height: '300',
+                emptyrecords: 'No hay resultados',
+                jsonReader: {
+                    root: "rows",
+                    total: "total",
+                    page: "page",
+                    records: "records",
+                    repeatitems: true,
+                    id: "VENDORID"
+                },
+                shrinkToFit: false,
+                autowidth: false,
+                multiselect: false
+            }).navGrid('#pager_CRol', { view: false, del: false, add: false, edit: false, search: false, refresh: false });
+        }
+        else {
+            $('[id*=_jqg_Proveedor]').jqGrid('clearGridData');
+            $('[id*=_jqg_Proveedor]').jqGrid('setGridParam', { datatype: "local", data: pData, mtype: 'GET' }).trigger('reloadGrid');
+        }
+        fc_jqgrid_responsive_table();
+    }
+
+    function CargarListaDetalle(pData, pTipo) {
+        if (pTipo == 1) {
+            var grid = $("#_jqg_Detalle"),
+              pagerSelector = "#pager_Detalle";
+            grid.jqGrid({
+                datatype: "local",
+                data: pData,
+                colNames: ['', 'Num. Comprobante', 'ID Moneda', 'F. Vencimiento', 'Monto Total', 'Detracción', 'Aplicar','Retención','Saldo'],
+                colModel: [
+                    { name: 'Estado', resizable: false, editable: false, resizable: true, width: 30, formatter: 'checkbox', formatoptions: { disabled: false }, align: "center", stype: "select", },
+                    { name: 'VENDNAME', index: 'VENDNAME', editable: false, resizable: false, width: 60, sortable: false },
+                    { name: 'TB_RAZON_SOCIAL', index: 'TB_RAZON_SOCIAL', editable: false, resizable: false, width: 60, sortable: false },
+                    { name: 'TB_RAZON_SOCIAL', index: 'TB_RAZON_SOCIAL', editable: false, resizable: false, width: 60, sortable: false },
+                    { name: 'TB_RAZON_SOCIAL', index: 'TB_RAZON_SOCIAL', editable: false, resizable: false, width: 60, sortable: false },
+                    { name: 'TB_RAZON_SOCIAL', index: 'TB_RAZON_SOCIAL', editable: false, resizable: false, width: 60, sortable: false },
+                    { name: 'TB_RAZON_SOCIAL', index: 'TB_RAZON_SOCIAL', editable: false, resizable: false, width: 60, sortable: false },
+                    { name: 'TB_RAZON_SOCIAL', index: 'TB_RAZON_SOCIAL', editable: false, resizable: false, width: 60, sortable: false },
+                    { name: 'TB_RAZON_SOCIAL', index: 'TB_RAZON_SOCIAL', editable: false, resizable: false, width: 60, sortable: false },
+                ],
+                loadtext: "Por favor Espere...",
+                pager: pagerSelector,
+                rowNum: 20,
+                rowList: [30, 40, 50],
+                viewrecords: true,
+                caption: "Lista de Proveedor",
+                loadonce: false,
+                height: '300',
+                emptyrecords: 'No hay resultados',
+                jsonReader: {
+                    root: "rows",
+                    total: "total",
+                    page: "page",
+                    records: "records",
+                    repeatitems: true,
+                    id: "VENDORID"
+                },
+                shrinkToFit: false,
+                autowidth: false,
+                multiselect: false
+            }).navGrid('#pager_CRol', { view: false, del: false, add: false, edit: false, search: false, refresh: false });
+        }
+        else {
+            $('[id*=_jqg_Detalle]').jqGrid('clearGridData');
+            $('[id*=_jqg_Detalle]').jqGrid('setGridParam', { datatype: "local", data: pData, mtype: 'GET' }).trigger('reloadGrid');
+        }
+        fc_jqgrid_responsive_table();
+    }
+</script>

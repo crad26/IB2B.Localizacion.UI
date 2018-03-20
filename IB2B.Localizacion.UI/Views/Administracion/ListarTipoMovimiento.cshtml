@@ -1,0 +1,117 @@
+﻿@model IB2B.Localizacion.UI.Models.TipoMovimientoModel
+@{
+    ViewBag.Title = "ListarTipoMovimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-default m-t-sm box box-primary" style="top:200px">
+    <div class="panel-heading p-t-xxs p-b-none">
+        <div class="row">
+            <div class="col-sm-12">
+                <label>
+                    <i class="glyphicon glyphicon-user"></i> &nbsp;&nbsp; Tipo de Movimiento
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body p-t-xxs">
+        <div class="container-fluid">
+            <table id="_jqg_Lista" cellpadding="0" cellspacing="0"></table>
+            <div id="pager_Cliente">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    var v_TituloMensaje = 'Tipo de Movimiento';
+            $(document).ready(function () {
+                document.getElementById("btnGuardarRegistro").style.display = "none";
+                document.getElementById("btnNuevoRegistro").style.display = "none";
+                BuscarTipoMovimiento(true);
+                fc_jqgrid_responsive_table();
+            });
+
+            function BuscarTipoMovimiento(pEsInicial) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ListaTipoMovimiento", "Administracion")',
+                    data: { "pRUC": $('#@Html.IdFor(m => m.oComunBE.Criterio01)').val(), "pRazonSocial": $('#@Html.IdFor(m => m.oComunBE.Criterio02)').val() },
+                    success: function (pData) {
+                        if (pData.Resultado == '@IB2B.Localizacion.BE.BE.Constantes.ResultadoSistema.Error') {
+                            fc_MensajeBootBox('danger', v_TituloMensaje, pData.Mensaje);
+                        }
+                        else {
+                            if (pEsInicial) {
+                                CargarListaTipoMovimiento(pData);
+                            }
+                            else {
+                                $('[id*=_jqg_Lista]').jqGrid('clearGridData');
+                                $('[id*=_jqg_Lista]').jqGrid('setGridParam', { datatype: "local", data: pData, mtype: 'GET' }).trigger('reloadGrid');
+                            }
+                        }
+                    },
+                    Error: function () {
+                        fc_MensajeBootBox('danger', v_TituloMensaje, 'Ocurrió un error inesperado, coordine con el área de sistemas.');
+                    }
+                });
+                fc_jqgrid_responsive_table();
+            }
+
+    function CargarListaTipoMovimiento(pData) {
+                var grid = $("#_jqg_Lista"),
+                  pagerSelector = "#pager_Cliente";
+                grid.jqGrid({
+                    datatype: "local",
+                    data: pData,
+                    olNames: ['IDTipoMovimiento', 'Descripcion', 'Nro de Cuenta', 'Des. Cuenta', 'tipo', 'ID Tipo Operacion', 'Desc. Tipo Operacion', 'MotivoTraslado', 'ID Tipo Documento', 'Desc. Tipo Documento', 'IDSitioPredeterminado'],
+                    colModel: [
+   { name: 'IDTipoMovimiento', index: 'Constancia', editable: false, resizable: false, width: 70, sortable: false, hidden: true },
+                        { name: 'Descripcion', index: 'NumeroComprobante', editable: false, resizable: false, width: 70, sortable: false, },
+                        { name: 'OCuenta.NumeroCuenta', index: 'OCuenta.NumeroCuenta', editable: false, resizable: false, width: 100, sortable: false },
+                        { name: 'OCuenta.Descripcion', index: 'OCuenta.Descripcion', editable: false, resizable: false, width: 100, sortable: false },
+                        { name: 'tipo', index: 'tipo', editable: false, resizable: false, width: 100, sortable: false },
+                        { name: 'oTipoOperacion.TipoOperacionId', index: 'oTipoOperacion.TipoOperacionId', editable: false, resizable: false, width: 100, sortable: false },
+                        { name: 'oTipoOperacion.TipoOperacionNombre', index: 'oTipoOperacion.TipoOperacionNombre', editable: false, resizable: false, width: 100, sortable: false },
+                        { name: 'MotivoTraslado', index: 'MotivoTraslado', editable: false, resizable: false, width: 100, sortable: false },
+                        { name: 'oTipoDocumento.TipoDocumentoID', index: 'oTipoDocumento.TipoDocumentoID', editable: false, resizable: false, width: 100, sortable: false },
+                        { name: 'oTipoDocumento.TipoDocumentoNombre', index: 'oTipoDocumento.TipoDocumentoNombre', editable: false, resizable: false, width: 100, sortable: false },
+                        { name: 'IDSitioPredeterminado', index: 'IDSitioPredeterminado', editable: false, resizable: false, width: 100, sortable: false }
+                    ],
+                    loadtext: "Por favor Espere...",
+                    pager: pagerSelector,
+                    rowNum: 20,
+                    rowList: [30, 40, 50],
+                    viewrecords: true,
+                    caption: "Lista de Clientes",
+                    loadonce: false,
+                    height: '300',
+                    emptyrecords: 'No hay resultados',
+                    jsonReader: {
+                        root: "rows",
+                        total: "total",
+                        page: "page",
+                        records: "records",
+                        repeatitems: true,
+                        id: "CUSTNMBR"
+                    },
+                    shrinkToFit: false,
+                    autowidth: false,
+                    multiselect: false
+                }).navGrid('#pager_CRol', { view: false, del: false, add: false, edit: false, search: false, refresh: false });
+                fc_jqgrid_responsive_table();
+            }
+
+            function EditarItem() {
+
+                var c_RowId = $("#_jqg_Lista").jqGrid('getGridParam', 'selrow');
+                var c_RowData = jQuery("#_jqg_PagoDetraccion").getRowData(c_RowId);
+                if (String(c_RowData["Url_Detalle"]) != '') {
+                    window.location.href = c_RowData["Url_Detalle"];
+                }
+                else {
+                    fc_MensajeBootBox('warning', v_TituloMensaje, 'No se encontró la línea seleccionada.');
+                }
+            }
+</script>

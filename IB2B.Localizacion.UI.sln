@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IB2B.Localizacion.UI", "IB2B.Localizacion.UI\IB2B.Localizacion.UI.csproj", "{16935317-5711-453A-A532-B7B5AFF849C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Componentes", "Componentes", "{9BDA9028-756E-47B9-8E99-9E58E81EE688}"
+	ProjectSection(SolutionItems) = preProject
+		E:\Proyectos y Software\EE_Facturacion_TRUNK\EE_FacturacionVS\TRUNK\Componentes\EE.Solution.Util.dll = E:\Proyectos y Software\EE_Facturacion_TRUNK\EE_FacturacionVS\TRUNK\Componentes\EE.Solution.Util.dll
+		E:\Proyectos y Software\EE_Facturacion_TRUNK\EE_FacturacionVS\TRUNK\Componentes\itextsharp.dll = E:\Proyectos y Software\EE_Facturacion_TRUNK\EE_FacturacionVS\TRUNK\Componentes\itextsharp.dll
+		..\..\Users\fu46258239-ext\Source\Workspaces\E-Store-Peru\Version Eduardo 2\packages\MicosoftReportViewerWebForms_v11.1.0.1\lib\Microsoft.ReportViewer.WebForms.DLL = ..\..\Users\fu46258239-ext\Source\Workspaces\E-Store-Peru\Version Eduardo 2\packages\MicosoftReportViewerWebForms_v11.1.0.1\lib\Microsoft.ReportViewer.WebForms.DLL
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IB2B.Localizacion.BE", "IB2B.Localizacion.BE\IB2B.Localizacion.BE.csproj", "{D5211D75-CB05-4AE8-BCB2-12F277FE5519}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IB2B.Localizacion.BL", "IB2B.Localizacion.BL\IB2B.Localizacion.BL.csproj", "{95568E77-C879-4814-AA47-0D91DEC060D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IB2B.Localizacion.DAC", "IB2B.Localizacion.DAC\IB2B.Localizacion.DAC.csproj", "{6E3234F3-1315-479A-83FC-72C4C35E9047}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16935317-5711-453A-A532-B7B5AFF849C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16935317-5711-453A-A532-B7B5AFF849C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16935317-5711-453A-A532-B7B5AFF849C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16935317-5711-453A-A532-B7B5AFF849C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5211D75-CB05-4AE8-BCB2-12F277FE5519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5211D75-CB05-4AE8-BCB2-12F277FE5519}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5211D75-CB05-4AE8-BCB2-12F277FE5519}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5211D75-CB05-4AE8-BCB2-12F277FE5519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95568E77-C879-4814-AA47-0D91DEC060D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95568E77-C879-4814-AA47-0D91DEC060D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95568E77-C879-4814-AA47-0D91DEC060D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95568E77-C879-4814-AA47-0D91DEC060D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E3234F3-1315-479A-83FC-72C4C35E9047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3234F3-1315-479A-83FC-72C4C35E9047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3234F3-1315-479A-83FC-72C4C35E9047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3234F3-1315-479A-83FC-72C4C35E9047}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

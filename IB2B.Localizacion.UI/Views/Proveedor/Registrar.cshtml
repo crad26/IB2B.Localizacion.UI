@@ -1,0 +1,229 @@
+﻿@model IB2B.Localizacion.UI.Models.ProveedorModels
+
+@{
+    ViewBag.Title = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Ajax.BeginForm("Registrar", "Proveedor", new AjaxOptions { HttpMethod = "POST", OnSuccess = "RegistroResult" }, new { id = "formProveedor", @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="panel panel-default m-t-sm box box-primary" style="top:200px">
+        <div class="panel-heading p-t-xxs p-b-none">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>
+                        <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp; Registro de Proveedor
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body p-t-xxs">
+            <div class="form-horizontal">
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Id. Proveedor</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oProveedorBE.VENDORID, new { @class = "form-control filterItem", value = Model.oProveedorBE.VENDORID })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.oProveedorBE.VENDORID, "", new { @class = "text-danger" })
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oProveedorBE.CB_EA, new { @class = "form-control filterItem", value = Model.oProveedorBE.CB_EA }) 
+                    </div>
+                    <label class="control-label col-sm-2"> Exonerado de Retención</label>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Descripción</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(m => m.oProveedorBE.VENDNAME, new { @class = "form-control filterItem", value = Model.oProveedorBE.VENDNAME })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.oProveedorBE.VENDNAME, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Tipo Persona</label>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(m => m.oProveedorBE.oTipoPersonaBE.TipoPersonaID, new SelectList(Model.vLTipoPersonaBE, "TipoPersonaID", "TipoPersonaNombre"), "- Seleccione -", new { @class = "form-control" })
+                    </div>
+                    <label class="control-label col-sm-2"> Tipo Documento</label>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(m => m.oProveedorBE.oTipoDocumentoBE.TipoDocumentoID, new SelectList(Model.vLTipoDocumentoBE, "TipoDocumentoID", "TipoDocumentoNombre"), "- Seleccione -", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Nro. Documento</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oProveedorBE.TB_NRO_DOCUMENTO, new { @class = "form-control filterItem", value = Model.oProveedorBE.TB_NRO_DOCUMENTO })
+                    </div>
+                    <label class="control-label col-sm-2"> Nro. ReferenciaRazón Social</label>
+                    <div class="col-sm-2">
+                       @Html.TextBoxFor(m => m.oProveedorBE.TB_REFERENCIA, new { @class = "form-control filterItem", value = Model.oProveedorBE.TB_REFERENCIA })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Razón Social</label>
+                    <div class="col-sm-6">
+                       @Html.TextBoxFor(m => m.oProveedorBE.TB_RAZON_SOCIAL, new { @class = "form-control filterItem", value = Model.oProveedorBE.TB_RAZON_SOCIAL })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Tipo Bienes</label>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(m => m.oProveedorBE.oTipoBienesBE.BienesID, new SelectList(Model.vLTipoBienesBE, "BienesID", "BienesNombre"), "- Seleccione -", new { @class = "form-control" })
+                    </div>
+                    <label class="control-label col-sm-2"> Tipo Convenio ND</label>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(m => m.oProveedorBE.oTipoConvenioBE.ConvenioID, new SelectList(Model.vLTipoConvenioBE, "ConvenioID", "ConvenioNombre"), "- Seleccione -", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Tipo de Renta</label>
+                    <div class="col-sm-2">
+                        @Html.DropDownListFor(m => m.oProveedorBE.oTipoRentaBE.RentaID, new SelectList(Model.vLTipoRentaBE, "RentaID", "RentaNombre"), "- Seleccione -", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Primer Nombre</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oProveedorBE.FRSTNAME, new { @class = "form-control filterItem", value = Model.oProveedorBE.FRSTNAME })
+                    </div>
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oProveedorBE.CB_BC, new { @class = "form-control filterItem", value = Model.oProveedorBE.CB_BC,  @onchange = "ActivarFecha(1);"})
+                    </div>
+                    <label class="control-label col-sm-2"> Buen Contribuyente</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oProveedorBE.DT_BC_FECHA1, "{0:dd-MM-yyyy}", new { @class = "form-control filterItem date-picker", value = Model.oProveedorBE.DT_BC_FECHA1 })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Segundo Nombre</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oProveedorBE.SHRTNAME, new { @class = "form-control filterItem", value = Model.oProveedorBE.SHRTNAME })
+                    </div>
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oProveedorBE.CB_AR, new { @class = "form-control filterItem", value = Model.oProveedorBE.CB_AR, @onchange = "ActivarFecha(2);" })
+                    </div>
+                    <label class="control-label col-sm-2"> Agente Retenedor</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oProveedorBE.DT_AR_FECHA1, "{0:dd-MM-yyyy}", new { @class = "form-control filterItem date-picker", value = Model.oProveedorBE.DT_AR_FECHA1 })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Apellido Paterno</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oProveedorBE.LASTNAME, new { @class = "form-control filterItem", value = Model.oProveedorBE.LASTNAME })
+                    </div>
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oProveedorBE.CB_AP, new { @class = "form-control filterItem", value = Model.oProveedorBE.CB_AP, @onchange = "ActivarFecha(3);" })
+                    </div>
+                    <label class="control-label col-sm-2"> Agente Perceptor</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oProveedorBE.DT_AP_FECHA1, "{0:dd-MM-yyyy}", new { @class = "form-control filterItem date-picker", value = Model.oProveedorBE.DT_AP_FECHA1 })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> Apellido Materno</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oProveedorBE.MIDLNAME, new { @class = "form-control filterItem", value = Model.oProveedorBE.MIDLNAME })
+                    </div>
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oProveedorBE.CB_NH, new { @class = "form-control filterItem ", value = Model.oProveedorBE.CB_NH, @onchange = "ActivarFecha(4);" })
+                    </div>
+                    <label class="control-label col-sm-2"> No Habido</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oProveedorBE.DT_NH_FECHA1, "{0:dd-MM-yyyy}", new { @class = "form-control filterItem date-picker", value = Model.oProveedorBE.DT_NH_FECHA1 })
+                    </div>
+                </div>
+                <div class="form-group m-b-sm">
+                    <label class="control-label col-sm-2"> </label>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-1">
+                        @Html.CheckBoxFor(m => m.oProveedorBE.CB_RI, new { @class = "form-control filterItem ", value = Model.oProveedorBE.CB_RI, @onchange = "ActivarFecha(5);" })
+                    </div>
+                    <label class="control-label col-sm-2"> No Exoneración</label>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(m => m.oProveedorBE.DT_RI_FECHA1, "{0:dd-MM-yyyy}", new { @class = "form-control filterItem date-picker", value = Model.oProveedorBE.DT_RI_FECHA1 })
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.oComunBE.Flag, new { value = Model.oComunBE.Flag })
+                @Html.HiddenFor(m => m.oProveedorBE.VENDORID, new { value = Model.oProveedorBE.VENDORID })
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    var v_TituloMensaje = 'Registro Proveedor';
+    $(document).ready(function () {
+        document.getElementById("btnNuevoRegistro").style.display = "none";
+        document.getElementById("btnEditarRegistro").style.display = "none";
+        var v_ProveedorModelsBE = @(Html.Raw(Json.Encode(@Model)));
+        $('#@Html.IdFor(m => m.oProveedorBE.VENDORID)').prop('disabled',true);
+        $('#@Html.IdFor(m => m.oProveedorBE.VENDORID)').focus();
+        if(!v_ProveedorModelsBE.oProveedorBE.CB_BC) {
+            $('#@Html.IdFor(m => m.oProveedorBE.DT_BC_FECHA1)').prop('disabled',true);
+        }
+        if(!v_ProveedorModelsBE.oProveedorBE.CB_AR) {
+            $('#@Html.IdFor(m => m.oProveedorBE.DT_AR_FECHA1)').prop('disabled',true);
+        }
+        if(!v_ProveedorModelsBE.oProveedorBE.CB_AP) {
+            $('#@Html.IdFor(m => m.oProveedorBE.DT_AP_FECHA1)').prop('disabled',true);
+        }
+        if(!v_ProveedorModelsBE.oProveedorBE.CB_NH) {
+            $('#@Html.IdFor(m => m.oProveedorBE.DT_NH_FECHA1)').prop('disabled',true);
+        }
+        if(!v_ProveedorModelsBE.oProveedorBE.CB_RI) {
+            $('#@Html.IdFor(m => m.oProveedorBE.DT_RI_FECHA1)').prop('disabled',true);
+        }
+    });
+
+    function RegistroResult(pData) {
+        if (pData.Resultado == '@IB2B.Localizacion.BE.BE.Constantes.ResultadoSistema.Ok') {
+            location.href = '@Url.Action("Listar", "Proveedor")';
+        }
+        else {
+            fc_MensajeBootBox('warning', v_TituloMensaje, pData.Mensaje);
+        }
+    }
+
+    function ActivarFecha(pTipo) {
+        if(pTipo == 1) { //Buen Contribuyente
+            $('#@Html.IdFor(m => m.oProveedorBE.DT_BC_FECHA1)').prop('disabled',!$('#@Html.IdFor(m => m.oProveedorBE.CB_BC)').is(':checked'));
+            if(!$('#@Html.IdFor(m => m.oProveedorBE.CB_BC)').is(':checked')) {
+                $('#@Html.IdFor(m => m.oProveedorBE.DT_BC_FECHA1)').val('');
+            }
+        }
+        else if(pTipo == 2) { //Agente Retenedor
+            $('#@Html.IdFor(m => m.oProveedorBE.DT_AR_FECHA1)').prop('disabled',!$('#@Html.IdFor(m => m.oProveedorBE.CB_AR)').is(':checked'));
+            if(!$('#@Html.IdFor(m => m.oProveedorBE.CB_AR)').is(':checked')) {
+                $('#@Html.IdFor(m => m.oProveedorBE.DT_AR_FECHA1)').val('');
+            }
+        }
+        else if(pTipo == 3) { //Agente Perceptor
+            $('#@Html.IdFor(m => m.oProveedorBE.DT_AP_FECHA1)').prop('disabled',!$('#@Html.IdFor(m => m.oProveedorBE.CB_AP)').is(':checked'));
+            if(!$('#@Html.IdFor(m => m.oProveedorBE.CB_AP)').is(':checked')) {
+                $('#@Html.IdFor(m => m.oProveedorBE.DT_AP_FECHA1)').val('');
+            }
+        }
+        else if(pTipo == 4) { //No habido
+            $('#@Html.IdFor(m => m.oProveedorBE.DT_NH_FECHA1)').prop('disabled',!$('#@Html.IdFor(m => m.oProveedorBE.CB_NH)').is(':checked'));
+            if(!$('#@Html.IdFor(m => m.oProveedorBE.CB_NH)').is(':checked')) {
+                $('#@Html.IdFor(m => m.oProveedorBE.DT_NH_FECHA1)').val('');
+            }
+        }
+        else if(pTipo == 5) { //No Exoneracion
+            $('#@Html.IdFor(m => m.oProveedorBE.DT_RI_FECHA1)').prop('disabled',!$('#@Html.IdFor(m => m.oProveedorBE.CB_RI)').is(':checked'));
+            if(!$('#@Html.IdFor(m => m.oProveedorBE.CB_RI)').is(':checked')) {
+                $('#@Html.IdFor(m => m.oProveedorBE.DT_RI_FECHA1)').val('');
+            }
+        }
+    }
+
+    function GuardarRegistro() {
+        var form = $('#formProveedor');
+        if (form.valid()) {
+            var fc_Registrar = function () {
+                $("#formProveedor").submit();
+            }
+            fc_MensajeBootBoxConfirm('info', v_TituloMensaje, "¿Desea guardar la información del Proveedor?", fc_Registrar, function () { });
+        }
+    }
+</script>
