@@ -32,7 +32,7 @@
                                 <span class="input-group-addon">
                                     ID Cliente
                                 </span>
-                                @Html.TextBoxFor(model => model.oClienteBE.CUSTNMBR, new { @class = "form-control", onchange = "BuscarClienteRUC()" })
+                                @Html.TextBoxFor(model => model.oClienteBE.CUSTNMBR, new { @class = "form-control"})
                             </div><br />
                             @Html.ValidationMessageFor(model => model.oClienteBE.CUSTNMBR, "", new { @class = "text-danger" })
                         </div>

@@ -162,7 +162,7 @@ namespace IB2B.Localizacion.UI.Controllers
             try
             {
                 ServiceReference1.DatosSUNATBE obDatosSUNAT = new ServiceReference1.LocalizacionClient().GetDataSUNAT(pDocumentoId.ToString().Trim());
-                ServiceReferenceEjemplo.ServiceRUCPortTypeClient o = new ServiceReferenceEjemplo.ServiceRUCPortTypeClient().
+               // ServiceReferenceEjemplo.ServiceRUCPortTypeClient o = new ServiceReferenceEjemplo.ServiceRUCPortTypeClient().
 
 
                 ClienteBE obItemBE = new ClienteBE();
