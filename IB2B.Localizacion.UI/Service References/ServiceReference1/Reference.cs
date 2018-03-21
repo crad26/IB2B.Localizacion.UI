@@ -165,6 +165,9 @@ namespace IB2B.Localizacion.UI.ServiceReference1 {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TipoDocumentoField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ValidarRegistroField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -249,6 +252,19 @@ namespace IB2B.Localizacion.UI.ServiceReference1 {
                 if ((object.ReferenceEquals(this.TipoDocumentoField, value) != true)) {
                     this.TipoDocumentoField = value;
                     this.RaisePropertyChanged("TipoDocumento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ValidarRegistro {
+            get {
+                return this.ValidarRegistroField;
+            }
+            set {
+                if ((this.ValidarRegistroField.Equals(value) != true)) {
+                    this.ValidarRegistroField = value;
+                    this.RaisePropertyChanged("ValidarRegistro");
                 }
             }
         }

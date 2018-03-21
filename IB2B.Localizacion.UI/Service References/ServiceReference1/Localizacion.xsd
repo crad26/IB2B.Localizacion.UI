@@ -8,6 +8,7 @@
       <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TipoContribuyente" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TipoDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidarRegistro" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DatosSUNATBE" nillable="true" type="tns:DatosSUNATBE" />

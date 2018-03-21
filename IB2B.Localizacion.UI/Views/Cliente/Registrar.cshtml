@@ -32,7 +32,7 @@
                                 <span class="input-group-addon">
                                     ID Cliente
                                 </span>
-                                @Html.TextBoxFor(model => model.oClienteBE.CUSTNMBR, new { @class = "form-control"})
+                                @Html.TextBoxFor(model => model.oClienteBE.CUSTNMBR, new { @class = "form-control", onchange = "BuscarClienteRUC()" })
                             </div><br />
                             @Html.ValidationMessageFor(model => model.oClienteBE.CUSTNMBR, "", new { @class = "text-danger" })
                         </div>
@@ -290,6 +290,7 @@
         $('#@Html.IdFor(m => m.oClienteBE.TB_NRO_DOCUMENTO)').prop('disabled',false);
         $('#@Html.IdFor(m => m.oClienteBE.TB_RAZON_SOCIAL)').prop('disabled',true);
         $('#@Html.IdFor(m => m.oClienteBE.CUSTNMBR)').focus();
+        $('#BC').prop('disable', true);
         if(!v_ClienteModelsBE.oClienteBE.CB_BC) {
             $('#@Html.IdFor(m => m.oClienteBE.DT_BC_FECHA1)').prop('disabled',false);
         }

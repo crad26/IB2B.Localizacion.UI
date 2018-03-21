@@ -162,66 +162,78 @@ namespace IB2B.Localizacion.UI.Controllers
             try
             {
                 ServiceReference1.DatosSUNATBE obDatosSUNAT = new ServiceReference1.LocalizacionClient().GetDataSUNAT(pDocumentoId.ToString().Trim());
-               // ServiceReferenceEjemplo.ServiceRUCPortTypeClient o = new ServiceReferenceEjemplo.ServiceRUCPortTypeClient().
-
-
                 ClienteBE obItemBE = new ClienteBE();
-
-                obItemBE.TB_NRO_DOCUMENTO = pDocumentoId;
-                obItemBE.TB_RAZON_SOCIAL = obDatosSUNAT.RazonSocial;
-                obItemBE.CB_BC = false;
-
-                if (pDocumentoId[0].ToString() == "2")
+                // ServiceReferenceEjemplo.ServiceRUCPortTypeClient o = new ServiceReferenceEjemplo.ServiceRUCPortTypeClient().
+                if (obDatosSUNAT.ValidarRegistro==true)
                 {
+                    //ClienteBE obItemBE = new ClienteBE();
+
                     obItemBE.TB_NRO_DOCUMENTO = pDocumentoId;
                     obItemBE.TB_RAZON_SOCIAL = obDatosSUNAT.RazonSocial;
-                    obItemBE.CUSTNAME = obDatosSUNAT.RazonSocial;
+                    obItemBE.CB_BC = false;
 
-                    obItemBE.oTipoPersonaBE.TipoPersonaID = "02";
-                    obItemBE.oTipoDocumentoBE.TipoDocumentoID = "06";
-                    //string mensaje = "PERSONA JURIDICA";
+                    if (pDocumentoId[0].ToString() == "2")
+                    {
+                        obItemBE.TB_NRO_DOCUMENTO = pDocumentoId;
+                        obItemBE.TB_RAZON_SOCIAL = obDatosSUNAT.RazonSocial;
+                        obItemBE.CUSTNAME = obDatosSUNAT.RazonSocial;
+
+                        obItemBE.oTipoPersonaBE.TipoPersonaID = "02";
+                        obItemBE.oTipoDocumentoBE.TipoDocumentoID = "06";
+                        //string mensaje = "PERSONA JURIDICA";
+                    }
+                    else
+                    {
+                        try
+                        {
+
+                            string[] cadena = obDatosSUNAT.NombreNatural.Split(new string[] { "-" }, StringSplitOptions.None);
+
+                            string[] primeraCadena = cadena[0].ToString().Trim().Split(new string[] { "DNI" }, StringSplitOptions.None);
+                            string DNIPersonaNatural = primeraCadena[1].ToString().Trim();
+
+
+                            //string[] segundaCadena = cadena[1].ToString().Trim().Split(new string[] { "," }, StringSplitOptions.None);
+
+                            //string NombrePersonaNatural = segundaCadena[0].ToString();
+                            //string ApellidoPersonaNatural = segundaCadena[1].ToString();
+
+
+
+                            string[] res = obDatosSUNAT.RazonSocial.Split(new string[] { " " }, StringSplitOptions.None);
+
+                            obItemBE.TB_NRO_DOCUMENTO = DNIPersonaNatural;
+                            obItemBE.oTipoPersonaBE.TipoPersonaID = "01";
+                            obItemBE.oTipoDocumentoBE.TipoDocumentoID = "01";
+
+                            obItemBE.CUSTNAME = "";
+                            obItemBE.TB_RAZON_SOCIAL = "";
+                            obItemBE.FRSTNAME = res[0];
+                            obItemBE.SHRTNAME = res[1];
+                            obItemBE.LASTNAME = res[2];
+                            obItemBE.MIDLNAME = res[3];
+                            //string mensaje2 = "PERSONA NATURAL";
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                    //var jsonResult = Json(obItemBE, JsonRequestBehavior.AllowGet);
+                    //jsonResult.MaxJsonLength = Int32.MaxValue;
+
+                    //return jsonResult;
+
                 }
                 else
                 {
-                    try
-                    {
 
-                        string[] cadena = obDatosSUNAT.NombreNatural.Split(new string[] { "-" }, StringSplitOptions.None);
-
-                        string[] primeraCadena = cadena[0].ToString().Trim().Split(new string[] { "DNI" }, StringSplitOptions.None);
-                        string DNIPersonaNatural = primeraCadena[1].ToString().Trim();
-
-
-                        //string[] segundaCadena = cadena[1].ToString().Trim().Split(new string[] { "," }, StringSplitOptions.None);
-
-                        //string NombrePersonaNatural = segundaCadena[0].ToString();
-                        //string ApellidoPersonaNatural = segundaCadena[1].ToString();
-
-
-
-                        string[] res = obDatosSUNAT.RazonSocial.Split(new string[] { " " }, StringSplitOptions.None);
-
-                        obItemBE.TB_NRO_DOCUMENTO = DNIPersonaNatural;
-                        obItemBE.oTipoPersonaBE.TipoPersonaID = "01";
-                        obItemBE.oTipoDocumentoBE.TipoDocumentoID = "01";
-
-                        obItemBE.CUSTNAME = "";
-                        obItemBE.TB_RAZON_SOCIAL = "";
-                        obItemBE.FRSTNAME = res[0];
-                        obItemBE.SHRTNAME = res[1];
-                        obItemBE.LASTNAME = res[2];
-                        obItemBE.MIDLNAME = res[3];
-                        //string mensaje2 = "PERSONA NATURAL";
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
                 }
                 var jsonResult = Json(obItemBE, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = Int32.MaxValue;
 
                 return jsonResult;
+
             }
             catch (Exception ex)
             {
