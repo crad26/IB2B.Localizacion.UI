@@ -1,114 +1,111 @@
 ﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Dent | @ViewBag.Title </title>
-    @*@Styles.Render("~/bundles/bootstrap")*@
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    @*@Styles.Render("~/Content/Plugins")*@
-    @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/App/AdminLTE.css" rel="stylesheet" />
-    <link href="~/Content/App/skins/_all-skins.css" rel="stylesheet" />
-    <link href="~/Scripts/plugins/jqGrid/ui.jqgrid.css" rel="stylesheet" />
-    <link href="~/Content/Site.css" rel="stylesheet" />
-    <link href="~/Scripts/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
-    <link href="~/Content/core.min-7.0.17171.1.css" rel="stylesheet" />
-    <link href="~/Content/plugins/iCheck/custom.css" rel="stylesheet" />
-    @*<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">*@
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Scripts/bootstrap")
-    @Scripts.Render("~/bundles/unobstrusive")
-    <script>
-    $(document).ready(function () {
-        var v_LogoString = '@Session[IB2B.Localizacion.BE.BE.Constantes.GrupoLocalizacion.LogoString]';
-        $("#imgLogoCompania").prop('src', 'data:image/jpeg;base64,' + v_LogoString);
-        $("#imgLogoCompaniaMenu").prop('src', 'data:image/jpeg;base64,' + v_LogoString);
-        $("#imgLogoCompaniaLogOff").prop('src', 'data:image/jpeg;base64,' + v_LogoString);
-        $('#MNSistema').on("click", function () {
-            document.getElementById("mySidebar").style.display = "block";
-        });
-    });
+        <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>E-Dent | @ViewBag.Title </title>
 
-    function w3_close() {
-        document.getElementById("mySidebar").style.display = "none";
-    }
+                <link href="~/Content/bootstrap.css" rel="stylesheet" />
 
-    function ActivarPanel(pPanel, pPanelBody) {
-        $("#PanelCliente").attr("aria-expanded", "false");
-        $("#PanelInventario").attr("aria-expanded", "false");
-        document.getElementById("PanelBodyCliente").style.display = "none";
-        document.getElementById("PanelBodyInventario").style.display = "none";
-        document.getElementById(pPanelBody).style.display = "block";
-        $("#" + pPanel).attr("aria-expanded", "true");
-    }
+            <link href="~/Content/core.min-7.0.17171.1.css" rel="stylesheet" />
 
-    </script>
+                <link href="~/Scripts/plugins/jqGrid/ui.jqgrid.css" rel="stylesheet" />
 
-    <style>
-        .w3-sidebar {
-            height:100%;
-            width:200px;
-            background-color:#fff;
-            position:fixed !important;
-            overflow:auto;
-        }
+                  @Styles.Render("~/bundles/bootstrap")
+                @Styles.Render("~/Content/Plugins")
+                @Scripts.Render("~/bundles/modernizr")
+                @Scripts.Render("~/bundles/jquery")
+                @Scripts.Render("~/Scripts/bootstrap")
+                @Scripts.Render("~/bundles/unobstrusive")
+                <script>
+                $(document).ready(function () {
+                    var v_LogoString = '@Session[IB2B.Localizacion.BE.BE.Constantes.GrupoLocalizacion.LogoString]';
+                    $("#imgLogoCompania").prop('src', 'data:image/jpeg;base64,' + v_LogoString);
+                    $("#imgLogoCompaniaMenu").prop('src', 'data:image/jpeg;base64,' + v_LogoString);
+                    $("#imgLogoCompaniaLogOff").prop('src', 'data:image/jpeg;base64,' + v_LogoString);
+                    $('#MNSistema').on("click", function () {
+                        document.getElementById("mySidebar").style.display = "block";
+                    });
+                });
 
-        .w3-bar-block .w3-bar-item {
-            width:100%;
-            display:block;
-            padding: 8px 16px;
-            text-align:left;
-            border: none;
-            outline:none;
-            white-space: normal;
-            float: none;
-        }
+                function w3_close() {
+                    document.getElementById("mySidebar").style.display = "none";
+                }
 
-        .w3-large {
-            font-size:18px !important; 
-        }
-    </style>
-</head>
-<body class="hold-transition skin-red-light sidebar-mini sidebar-collapse">
-    <div class="wrapper">
-        <!-- Sidebar -->
-        <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none;z-index:9999999;top:50px" id="mySidebar">
-            <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
-            <a href="#" class="w3-bar-item w3-button">Link 1</a>
-            <a href="#" class="w3-bar-item w3-button">Link 2</a>
-            <a href="#" class="w3-bar-item w3-button">Link 3</a>
-        </div>
-        <header class="main-header">
-            @(Html.Partial("_TopNavbar"))
-        </header>
-        <aside class="main-sidebar">
-            <section class="sidebar">
-                @(Html.Partial("_Navigation"))
-            </section>
-        </aside>
-        <div class="content-wrapper">
-            <section class="content">
-                @RenderBody()
-                <hr />
-                <footer>
-                    <center>
-                        <p>&copy; </p>
+                function ActivarPanel(pPanel, pPanelBody) {
+                    $("#PanelCliente").attr("aria-expanded", "false");
+                    $("#PanelInventario").attr("aria-expanded", "false");
+                    document.getElementById("PanelBodyCliente").style.display = "none";
+                    document.getElementById("PanelBodyInventario").style.display = "none";
+                    document.getElementById(pPanelBody).style.display = "block";
+                    $("#" + pPanel).attr("aria-expanded", "true");
+                }
+
+                </script>
+
+                <style>
+                    .w3-sidebar {
+                        height:100%;
+                        width:200px;
+                        background-color:#fff;
+                        position:fixed !important;
+                        overflow:auto;
+                    }
+
+                    .w3-bar-block .w3-bar-item {
+                        width:100%;
+                        display:block;
+                        padding: 8px 16px;
+                        text-align:left;
+                        border: none;
+                        outline:none;
+                        white-space: normal;
+                        float: none;
+                    }
+
+                    .w3-large {
+                        font-size:18px !important;
+                    }
+                </style>
+            </head>
+            <body class="hold-transition skin-red-light sidebar-mini sidebar-collapse">
+                <div class="wrapper">
+                    <!-- Sidebar -->
+                    <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none;z-index:9999999;top:50px" id="mySidebar">
+                        <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+                        <a href="#" class="w3-bar-item w3-button">Link 1</a>
+                        <a href="#" class="w3-bar-item w3-button">Link 2</a>
+                        <a href="#" class="w3-bar-item w3-button">Link 3</a>
+                    </div>
+                    <header class="main-header">
+                        @(Html.Partial("_TopNavbar"))
+                    </header>
+                    <aside class="main-sidebar">
+                        <section class="sidebar">
+                            @(Html.Partial("_Navigation"))
+                        </section>
+                    </aside>
+                    <div class="content-wrapper">
+                        <section class="content">
+                            @RenderBody()
+                            <hr />
+                            <footer>
+                                <center>
+                                    <p>&copy; </p>
+                                </center>
+                            </footer>
+                        </section>
+                    </div>
+                </div>
+                @RenderSection("scripts", false)
+                <div class="text-center loading_page" id="loading-page" style="display:none;z-index:2041 !important;">
+                    <center class="text-center inline">
+                        <img src="../Imagen/ajax-loader.gif" alt="Cargando.." class="center-block" />
+                        <label style="color:blue" class="inline"> &nbsp;&nbsp;&nbsp; Cargando por favor espere... </label>
                     </center>
-                </footer>
-            </section>
-        </div>
-    </div>
-    @RenderSection("scripts", false)
-    <div class="text-center loading_page" id="loading-page" style="display:none;z-index:2041 !important;">
-        <center class="text-center inline">
-            <img src="../Imagen/ajax-loader.gif" alt="Cargando.." class="center-block" />
-            <label style="color:blue" class="inline"> &nbsp;&nbsp;&nbsp; Cargando por favor espere... </label>
-        </center>
-    </div>
-</body>
-</html>
-
+                </div>
+            </body>
+    </html>
 
 
